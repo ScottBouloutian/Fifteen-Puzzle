@@ -13,8 +13,11 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
+@interface HelloWorldLayer : CCLayer
 {
+    int boardState[10];
+    int emptyTile;
+    NSMutableArray *tiles;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

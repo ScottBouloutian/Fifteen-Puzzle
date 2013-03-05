@@ -34,75 +34,81 @@
 	return scene;
 }
 
+-(void)resetBoardState{
+    for(int i=0;i<9;i++){
+        boardState[i]=i;
+    }
+    emptyTile=8;
+}
+
+-(void)moveTile:(int)tileNum{
+    int tileIndex=0;
+    for(int i=0;i<9;i++){
+        if(boardState[i]==tileNum){
+            tileIndex=i;
+        }
+    }
+    CCSprite *tile=[tiles objectAtIndex:tileNum];
+    CCMoveTo *moveRight = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x+100, tile.position.y)];
+    CCMoveTo *moveLeft = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x-100, tile.position.y)];
+    CCMoveTo *moveDown = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y-100)];
+    CCMoveTo *moveUp = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y+100)];
+    if(tileIndex==emptyTile-1){
+        [tile runAction:moveRight];
+        boardState[tileIndex]=8;
+        boardState[emptyTile]=tileNum;
+        emptyTile--;
+    }
+    else if(tileIndex==emptyTile+1){
+        [tile runAction:moveLeft];
+        boardState[tileIndex]=8;
+        boardState[emptyTile]=tileNum;
+        emptyTile++;
+    }
+    else if(tileIndex==emptyTile-3){
+        [tile runAction:moveDown];
+        boardState[tileIndex]=8;
+        boardState[emptyTile]=tileNum;
+        emptyTile-=3;
+    }
+    else if(tileIndex==emptyTile+3){
+        [tile runAction:moveUp];
+        boardState[tileIndex]=8;
+        boardState[emptyTile]=tileNum;
+        emptyTile+=3;
+    }
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [self convertTouchToNodeSpace:touch];
+    
+    for(int i=0;i<8;i++){
+        if(CGRectContainsPoint([[tiles objectAtIndex:i] boundingBox], location)){
+            [self moveTile:i];
+        }
+    }
+}
+
 // on "init" you need to initialize your instance
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
-		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-
-		// ask director for the window size
+        tiles=[[NSMutableArray alloc]init];
+        [self setTouchEnabled:YES];
+        [self resetBoardState];
 		CGSize size = [[CCDirector sharedDirector] winSize];
-	
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
-		
-		
-		
-		//
-		// Leaderboards and Achievements
-		//
-		
-		// Default font size will be 28 points.
-		[CCMenuItemFont setFontSize:28];
-		
-		// to avoid a retain-cycle with the menuitem and blocks
-		__block id copy_self = self;
-		
-		// Achievement Menu Item using blocks
-		CCMenuItem *itemAchievement = [CCMenuItemFont itemWithString:@"Achievements" block:^(id sender) {
-			
-			
-			GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-			achivementViewController.achievementDelegate = copy_self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:achivementViewController animated:YES];
-			
-			[achivementViewController release];
-		}];
-		
-		// Leaderboard Menu Item using blocks
-		CCMenuItem *itemLeaderboard = [CCMenuItemFont itemWithString:@"Leaderboard" block:^(id sender) {
-			
-			
-			GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-			leaderboardViewController.leaderboardDelegate = copy_self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
-			
-			[leaderboardViewController release];
-		}];
-
-		
-		CCMenu *menu = [CCMenu menuWithItems:itemAchievement, itemLeaderboard, nil];
-		
-		[menu alignItemsHorizontallyWithPadding:20];
-		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
-		
-		// Add the menu to the layer
-		[self addChild:menu];
-
-	}
+        for(int row=0;row<3;row++){
+            for(int col=0;col<3;col++){
+                if(row!=2 || col!=2){
+                    CCSprite *tile = [CCSprite spriteWithFile:@"tile.png"];
+                    [tiles addObject:tile];
+                    tile.position=ccp(col*100+50,size.height-(row*100+50));
+                    [self addChild:tile];
+                }
+            }
+        }
+    }
 	return self;
 }
 
