@@ -40,7 +40,22 @@
     CCMoveTo *moveLeft = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x-100, tile.position.y)];
     CCMoveTo *moveDown = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y-100)];
     CCMoveTo *moveUp = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y+100)];
-    
+
+    int direction=[puzzle moveTileWithNumber:tileNum];
+    switch(direction){
+        case 1:
+            [tile runAction:moveRight];
+            break;
+        case 2:
+            [tile runAction:moveDown];
+            break;
+        case 3:
+            [tile runAction:moveLeft];
+            break;
+        case 4:
+            [tile runAction:moveUp];
+            break;
+    }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -58,13 +73,14 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
+        puzzle=[[PuzzleBoard alloc]init];
         tiles=[[NSMutableArray alloc]init];
         [self setTouchEnabled:YES];
         [puzzle resetBoardState];
 		CGSize size = [[CCDirector sharedDirector] winSize];
         for(int row=0;row<3;row++){
             for(int col=0;col<3;col++){
-                if(row!=0 || col!=0){
+                if(row!=2 || col!=2){
                     CCSprite *tile = [CCSprite spriteWithFile:@"tile.png"];
                     [tiles addObject:tile];
                     tile.position=ccp(col*100+50,size.height-(row*100+50));
