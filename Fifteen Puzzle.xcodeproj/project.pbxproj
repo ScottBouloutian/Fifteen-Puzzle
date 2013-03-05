@@ -139,6 +139,7 @@
 		CEF405AE16E5CEF9005090BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405AD16E5CEF9005090BB /* AppDelegate.m */; };
 		CEF405B116E5CEF9005090BB /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405B016E5CEF9005090BB /* HelloWorldLayer.m */; };
 		CEF405B416E5CEF9005090BB /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405B316E5CEF9005090BB /* IntroLayer.m */; };
+		CEF405BC16E5D05B005090BB /* PuzzleBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405BB16E5D05B005090BB /* PuzzleBoard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -420,6 +421,8 @@
 		CEF405B016E5CEF9005090BB /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		CEF405B216E5CEF9005090BB /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		CEF405B316E5CEF9005090BB /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		CEF405BA16E5D05B005090BB /* PuzzleBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleBoard.h; sourceTree = "<group>"; };
+		CEF405BB16E5D05B005090BB /* PuzzleBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleBoard.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +485,8 @@
 				CEF405AD16E5CEF9005090BB /* AppDelegate.m */,
 				CEF405AF16E5CEF9005090BB /* HelloWorldLayer.h */,
 				CEF405B016E5CEF9005090BB /* HelloWorldLayer.m */,
+				CEF405BA16E5D05B005090BB /* PuzzleBoard.h */,
+				CEF405BB16E5D05B005090BB /* PuzzleBoard.m */,
 				CEF405B216E5CEF9005090BB /* IntroLayer.h */,
 				CEF405B316E5CEF9005090BB /* IntroLayer.m */,
 				CEF4041F16E5CEF6005090BB /* Resources */,
@@ -1054,6 +1059,7 @@
 				CEF405AE16E5CEF9005090BB /* AppDelegate.m in Sources */,
 				CEF405B116E5CEF9005090BB /* HelloWorldLayer.m in Sources */,
 				CEF405B416E5CEF9005090BB /* IntroLayer.m in Sources */,
+				CEF405BC16E5D05B005090BB /* PuzzleBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

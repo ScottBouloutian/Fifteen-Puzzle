@@ -8,6 +8,7 @@
 
 
 #import <GameKit/GameKit.h>
+#import "PuzzleBoard.h"
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
@@ -15,8 +16,7 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
-    int boardState[10];
-    int emptyTile;
+    PuzzleBoard *puzzle;
     NSMutableArray *tiles;
 }
 

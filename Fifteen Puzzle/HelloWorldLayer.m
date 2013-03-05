@@ -34,49 +34,13 @@
 	return scene;
 }
 
--(void)resetBoardState{
-    for(int i=0;i<9;i++){
-        boardState[i]=i;
-    }
-    emptyTile=8;
-}
-
 -(void)moveTile:(int)tileNum{
-    int tileIndex=0;
-    for(int i=0;i<9;i++){
-        if(boardState[i]==tileNum){
-            tileIndex=i;
-        }
-    }
     CCSprite *tile=[tiles objectAtIndex:tileNum];
     CCMoveTo *moveRight = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x+100, tile.position.y)];
     CCMoveTo *moveLeft = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x-100, tile.position.y)];
     CCMoveTo *moveDown = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y-100)];
     CCMoveTo *moveUp = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y+100)];
-    if(tileIndex==emptyTile-1){
-        [tile runAction:moveRight];
-        boardState[tileIndex]=8;
-        boardState[emptyTile]=tileNum;
-        emptyTile--;
-    }
-    else if(tileIndex==emptyTile+1){
-        [tile runAction:moveLeft];
-        boardState[tileIndex]=8;
-        boardState[emptyTile]=tileNum;
-        emptyTile++;
-    }
-    else if(tileIndex==emptyTile-3){
-        [tile runAction:moveDown];
-        boardState[tileIndex]=8;
-        boardState[emptyTile]=tileNum;
-        emptyTile-=3;
-    }
-    else if(tileIndex==emptyTile+3){
-        [tile runAction:moveUp];
-        boardState[tileIndex]=8;
-        boardState[emptyTile]=tileNum;
-        emptyTile+=3;
-    }
+    
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -96,11 +60,11 @@
 	if( (self=[super init]) ) {
         tiles=[[NSMutableArray alloc]init];
         [self setTouchEnabled:YES];
-        [self resetBoardState];
+        [puzzle resetBoardState];
 		CGSize size = [[CCDirector sharedDirector] winSize];
         for(int row=0;row<3;row++){
             for(int col=0;col<3;col++){
-                if(row!=2 || col!=2){
+                if(row!=0 || col!=0){
                     CCSprite *tile = [CCSprite spriteWithFile:@"tile.png"];
                     [tiles addObject:tile];
                     tile.position=ccp(col*100+50,size.height-(row*100+50));
