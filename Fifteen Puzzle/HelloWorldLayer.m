@@ -36,6 +36,7 @@
 
 -(void)moveTile:(int)tileNum{
     CCSprite *tile=[tiles objectAtIndex:tileNum];
+    
     CCMoveTo *moveRight = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x+100, tile.position.y)];
     CCMoveTo *moveLeft = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x-100, tile.position.y)];
     CCMoveTo *moveDown = [CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y-100)];
@@ -73,17 +74,23 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        puzzle=[[PuzzleBoard alloc]init];
-        tiles=[[NSMutableArray alloc]init];
         [self setTouchEnabled:YES];
+        tiles=[[NSMutableArray alloc]init];
+        labels=[[NSMutableArray alloc]init];
+        puzzle=[[PuzzleBoard alloc]init];
         [puzzle resetBoardState];
+
 		CGSize size = [[CCDirector sharedDirector] winSize];
+
         for(int row=0;row<3;row++){
             for(int col=0;col<3;col++){
                 if(row!=2 || col!=2){
                     CCSprite *tile = [CCSprite spriteWithFile:@"tile.png"];
-                    [tiles addObject:tile];
+                    CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",(row*3+col+1)] fontName:@"Marker Felt" fontSize:32];
                     tile.position=ccp(col*100+50,size.height-(row*100+50));
+                    label.position=ccp(50,50);
+                    [tile addChild:label];
+                    [tiles addObject:tile];
                     [self addChild:tile];
                 }
             }

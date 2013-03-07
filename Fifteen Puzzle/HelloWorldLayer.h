@@ -18,6 +18,8 @@
 {
     PuzzleBoard *puzzle;
     NSMutableArray *tiles;
+    NSMutableArray *labels;
+    
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
