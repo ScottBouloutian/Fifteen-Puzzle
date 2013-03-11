@@ -15,6 +15,6 @@
 }
 
 -(void)resetBoardState;
--(int)moveTileWithNumber:(int)tileNumber;
+-(int)moveTileWithIndex:(int)tileNumber;
 
 @end

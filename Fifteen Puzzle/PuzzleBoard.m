@@ -19,7 +19,7 @@
     }
 }
 
--(int)moveTileWithNumber:(int)tileNumber{
+-(int)moveTileWithIndex:(int)tileNumber{
     //1-Right
     //2-Down
     //3-Left
