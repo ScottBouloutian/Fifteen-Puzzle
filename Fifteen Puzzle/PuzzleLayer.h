@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "PuzzleBoard.h"
 
+static const int SCRAMBLE_DEPTH=30;
 @interface PuzzleLayer : CCLayer {
     CCLayerColor *layer;
     PuzzleBoard *puzzle;

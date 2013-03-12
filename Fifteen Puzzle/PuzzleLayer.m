@@ -10,9 +10,13 @@
 
 
 @implementation PuzzleLayer
+
 -(void)scrambleTouched:(id)sender{
-    
+    for(int i=0;i<SCRAMBLE_DEPTH;i++){
+        [self moveTile:[self getTile:[puzzle randomMove]]];
+    }
 }
+
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint location = [self convertTouchToNodeSpace:touch];
@@ -41,7 +45,7 @@
 }
 
 -(void)moveTile:(CCNode*)tile{
-    int direction=[puzzle moveTileWithIndex:(tile.tag-1)];
+    int direction=[puzzle moveTile:tile.tag];
     switch(direction){
         case 1:
             [tile runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x+100, tile.position.y)]];
@@ -58,12 +62,10 @@
     }
 }
 
-
 -(id) init
 {
 	if( (self=[super init]) ) {
         puzzle=[[PuzzleBoard alloc]init];
-        [puzzle resetBoardState];
     }
 	return self;
 }

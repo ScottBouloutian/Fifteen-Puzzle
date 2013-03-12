@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface PuzzleBoard : NSObject{
-    int boardState[3][3];
-    int tileRows[9];
-    int tileCols[9];
+    int tileRows[9]; //stores the row that each tile is in
+    int tileCols[9]; //stores the column that each tile is in
+    int lastRandomMove;
 }
 
--(void)resetBoardState;
--(int)moveTileWithIndex:(int)tileNumber;
-
+-(void)resetBoardState; //resets everything to its default state
+-(int)randomMove;
+-(void)possibleMoves:(int[])tiles:(int*)numPossible; //stores the tiles that are possible to be moved in the given tiles array
+-(int)canMoveTile:(int)tileNumber; //returns the direction a tile can be moved or zero otherwise
+-(int)moveTile:(int)tileNumber; //slides a tile with the given number if it can be moved and returns the direction that it moved
 @end
