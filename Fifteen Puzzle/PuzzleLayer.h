@@ -13,6 +13,7 @@
 static const int SCRAMBLE_DEPTH=30;
 @interface PuzzleLayer : CCLayer {
     CCLayerColor *layer;
+    CCLabelTTF *statusLabel;
     PuzzleBoard *puzzle;
 }
 

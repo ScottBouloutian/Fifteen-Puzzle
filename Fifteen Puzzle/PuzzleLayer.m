@@ -60,6 +60,16 @@
             [tile runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(tile.position.x,tile.position.y+100)]];
             break;
     }
+    [self checkForSolution];
+}
+
+-(void)checkForSolution{
+    if([puzzle isSolved]){
+        statusLabel.string=@"Solved";
+    }
+    else{
+        statusLabel.string=@"Not Solved";
+    }
 }
 
 -(id) init
