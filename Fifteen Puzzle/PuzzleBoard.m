@@ -28,6 +28,10 @@
     lastRandomMove=0;
 }
 
+-(void)setBoardState{
+    
+}
+
 -(int)randomMove{
     int tiles[4];
     int numPossible;

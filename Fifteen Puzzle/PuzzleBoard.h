@@ -20,4 +20,5 @@
 -(int)canMoveTile:(int)tileNumber; //returns the direction a tile can be moved or zero otherwise
 -(int)moveTile:(int)tileNumber; //slides a tile with the given number if it can be moved and returns the direction that it moved
 -(bool)isSolved;
+-(void)setBoardState;
 @end
