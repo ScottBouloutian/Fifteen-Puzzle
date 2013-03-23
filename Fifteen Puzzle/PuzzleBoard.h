@@ -18,7 +18,6 @@
 -(int)randomMove;
 -(void)possibleMoves:(int[])tiles:(int*)numPossible; //stores the tiles that are possible to be moved in the given tiles array
 -(int)canMoveTile:(int)tileNumber; //returns the direction a tile can be moved or zero otherwise
--(int)moveTile:(int)tileNumber; //slides a tile with the given number if it can be moved and returns the direction that it moved
 -(bool)isSolved;
--(void)setBoardState;
+-(void)swapTiles:(int)tileOneNum:(int)tileTwoNum;
 @end

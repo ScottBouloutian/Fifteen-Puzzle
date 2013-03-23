@@ -28,8 +28,14 @@
     lastRandomMove=0;
 }
 
--(void)setBoardState{
-    
+-(void)swapTiles:(int)tileOneNum:(int)tileTwoNum{
+    int tempRow=tileRows[tileOneNum-1];
+    tileRows[tileOneNum-1]=tileRows[tileTwoNum-1];
+    tileRows[tileTwoNum-1]=tempRow;
+
+    int tempCol=tileCols[tileOneNum-1];
+    tileCols[tileOneNum-1]=tileCols[tileTwoNum-1];
+    tileCols[tileTwoNum-1]=tempCol;
 }
 
 -(int)randomMove{
@@ -86,20 +92,6 @@
         }
     }
     return 0;
-}
-
--(int)moveTile:(int)tileNumber{
-    //if the tile can actually be moved
-    int direction=[self canMoveTile:tileNumber];
-    if(direction!=0){
-        int tempRow=tileRows[8];
-        int tempCol=tileCols[8];
-        tileRows[8]=tileRows[tileNumber-1];
-        tileCols[8]=tileCols[tileNumber-1];
-        tileRows[tileNumber-1]=tempRow;
-        tileCols[tileNumber-1]=tempCol;
-    }
-    return direction;
 }
 
 -(bool)isSolved{

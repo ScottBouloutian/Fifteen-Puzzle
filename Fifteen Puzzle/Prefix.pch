@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Test' target in the 'Test' project
+// Prefix header for all source files of the 'Fifteen Puzzle' target in the 'Fifteen Puzzle' project
 //
 
 #import <Availability.h>
