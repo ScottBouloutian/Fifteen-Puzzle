@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE3B7F771704AD6B0030E31B /* PuzzleState.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3B7F761704AD6B0030E31B /* PuzzleState.m */; };
 		CE8537E716ED6A3700B2DE07 /* PuzzleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8537E616ED6A3700B2DE07 /* PuzzleLayer.m */; };
 		CE85386716ED6C8000B2DE07 /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85382B16ED6C8000B2DE07 /* CCBAnimationManager.m */; };
 		CE85386816ED6C8000B2DE07 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85382D16ED6C8000B2DE07 /* CCBKeyframe.m */; };
@@ -28,6 +29,7 @@
 		CE85387816ED6C8000B2DE07 /* CCScale9Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85385016ED6C8000B2DE07 /* CCScale9Sprite.m */; };
 		CE85387916ED6C8000B2DE07 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85385216ED6C8000B2DE07 /* Utils.m */; };
 		CE85387A16ED6C8000B2DE07 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE85385416ED6C8000B2DE07 /* README.md */; };
+		CE909AD917064E4000E83F9C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE909AD817064E4000E83F9C /* CoreFoundation.framework */; };
 		CE933F3C16FBFF1000F73E84 /* ccbDefaultImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE933F2C16FBFF1000F73E84 /* ccbDefaultImages.plist */; };
 		CE933F3D16FBFF1000F73E84 /* ccbDefaultImages.png in Resources */ = {isa = PBXBuildFile; fileRef = CE933F2D16FBFF1000F73E84 /* ccbDefaultImages.png */; };
 		CE933F3E16FBFF1000F73E84 /* ccbParticleFire.png in Resources */ = {isa = PBXBuildFile; fileRef = CE933F2E16FBFF1000F73E84 /* ccbParticleFire.png */; };
@@ -171,11 +173,13 @@
 		CEF405A616E5CEF9005090BB /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF405A516E5CEF9005090BB /* vec4.c */; };
 		CEF405AB16E5CEF9005090BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405AA16E5CEF9005090BB /* main.m */; };
 		CEF405AE16E5CEF9005090BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405AD16E5CEF9005090BB /* AppDelegate.m */; };
-		CEF405BC16E5D05B005090BB /* PuzzleBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405BB16E5D05B005090BB /* PuzzleBoard.m */; };
+		CEF405BC16E5D05B005090BB /* PuzzleEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405BB16E5D05B005090BB /* PuzzleEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE1E254A16FC2A740021CA2B /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		CE3B7F751704AD6B0030E31B /* PuzzleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleState.h; sourceTree = "<group>"; };
+		CE3B7F761704AD6B0030E31B /* PuzzleState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleState.m; sourceTree = "<group>"; };
 		CE8537E516ED6A3700B2DE07 /* PuzzleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleLayer.h; sourceTree = "<group>"; };
 		CE8537E616ED6A3700B2DE07 /* PuzzleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleLayer.m; sourceTree = "<group>"; };
 		CE85382A16ED6C8000B2DE07 /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 		CE85385216ED6C8000B2DE07 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		CE85385316ED6C8000B2DE07 /* CCControlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControlExtension.h; sourceTree = "<group>"; };
 		CE85385416ED6C8000B2DE07 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		CE909AD817064E4000E83F9C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CE933F2C16FBFF1000F73E84 /* ccbDefaultImages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ccbDefaultImages.plist; sourceTree = "<group>"; };
 		CE933F2D16FBFF1000F73E84 /* ccbDefaultImages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbDefaultImages.png; sourceTree = "<group>"; };
 		CE933F2E16FBFF1000F73E84 /* ccbParticleFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleFire.png; sourceTree = "<group>"; };
@@ -504,8 +509,8 @@
 		CEF405AA16E5CEF9005090BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CEF405AC16E5CEF9005090BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEF405AD16E5CEF9005090BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CEF405BA16E5D05B005090BB /* PuzzleBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleBoard.h; sourceTree = "<group>"; };
-		CEF405BB16E5D05B005090BB /* PuzzleBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleBoard.m; sourceTree = "<group>"; };
+		CEF405BA16E5D05B005090BB /* PuzzleEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleEngine.h; sourceTree = "<group>"; };
+		CEF405BB16E5D05B005090BB /* PuzzleEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -513,6 +518,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE909AD917064E4000E83F9C /* CoreFoundation.framework in Frameworks */,
 				CEF4040D16E5CEF6005090BB /* QuartzCore.framework in Frameworks */,
 				CEF4040F16E5CEF6005090BB /* OpenGLES.framework in Frameworks */,
 				CEF4041116E5CEF6005090BB /* OpenAL.framework in Frameworks */,
@@ -695,6 +701,7 @@
 		CEF4040016E5CEF6005090BB = {
 			isa = PBXGroup;
 			children = (
+				CE909AD817064E4000E83F9C /* CoreFoundation.framework */,
 				CEF4041E16E5CEF6005090BB /* Fifteen Puzzle */,
 				CEF4040B16E5CEF6005090BB /* Frameworks */,
 				CEF4040A16E5CEF6005090BB /* Products */,
@@ -728,14 +735,16 @@
 		CEF4041E16E5CEF6005090BB /* Fifteen Puzzle */ = {
 			isa = PBXGroup;
 			children = (
+				CE3B7F751704AD6B0030E31B /* PuzzleState.h */,
+				CE3B7F761704AD6B0030E31B /* PuzzleState.m */,
 				CE992ED316FB95D800084D6B /* Tile.h */,
 				CE992ED416FB95D800084D6B /* Tile.m */,
 				CEF405AC16E5CEF9005090BB /* AppDelegate.h */,
 				CEF405AD16E5CEF9005090BB /* AppDelegate.m */,
 				CE8537E516ED6A3700B2DE07 /* PuzzleLayer.h */,
 				CE8537E616ED6A3700B2DE07 /* PuzzleLayer.m */,
-				CEF405BA16E5D05B005090BB /* PuzzleBoard.h */,
-				CEF405BB16E5D05B005090BB /* PuzzleBoard.m */,
+				CEF405BA16E5D05B005090BB /* PuzzleEngine.h */,
+				CEF405BB16E5D05B005090BB /* PuzzleEngine.m */,
 				CEF4041F16E5CEF6005090BB /* Resources */,
 				CEF4043716E5CEF6005090BB /* libs */,
 				CEF405A816E5CEF9005090BB /* Supporting Files */,
@@ -1308,7 +1317,7 @@
 				CEF405A616E5CEF9005090BB /* vec4.c in Sources */,
 				CEF405AB16E5CEF9005090BB /* main.m in Sources */,
 				CEF405AE16E5CEF9005090BB /* AppDelegate.m in Sources */,
-				CEF405BC16E5D05B005090BB /* PuzzleBoard.m in Sources */,
+				CEF405BC16E5D05B005090BB /* PuzzleEngine.m in Sources */,
 				CE8537E716ED6A3700B2DE07 /* PuzzleLayer.m in Sources */,
 				CE85386716ED6C8000B2DE07 /* CCBAnimationManager.m in Sources */,
 				CE85386816ED6C8000B2DE07 /* CCBKeyframe.m in Sources */,
@@ -1330,6 +1339,7 @@
 				CE85387816ED6C8000B2DE07 /* CCScale9Sprite.m in Sources */,
 				CE85387916ED6C8000B2DE07 /* Utils.m in Sources */,
 				CE992ED516FB95D800084D6B /* Tile.m in Sources */,
+				CE3B7F771704AD6B0030E31B /* PuzzleState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

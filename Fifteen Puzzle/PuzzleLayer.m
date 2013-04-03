@@ -7,14 +7,14 @@
 //
 
 #import "PuzzleLayer.h"
-#import "Tile.h"
 
 @implementation PuzzleLayer
 
 -(void)scrambleTouched:(id)sender{
-    for(int i=0;i<SCRAMBLE_DEPTH;i++){
-        [self swapTiles:[self getTile:[puzzle randomMove]]:[self getTile:9]];
-    }
+    [puzzle solve];
+    //for(int i=0;i<SCRAMBLE_DEPTH;i++){
+    //    [self swapTiles:[self getTile:[puzzle randomMove]]:[self getTile:9]];
+    //}
 }
 
 -(Tile*)getTile:(int)tileNumber{
@@ -157,16 +157,17 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        puzzle=[[PuzzleBoard alloc]init];
-        for (int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                positions[i*3+j]=ccp(50+100*j,430-100*i);
-            }
-        }
+        puzzle=[[PuzzleEngine alloc]init];
         inEditMode=false;
         isMoving=false;
-        touchDispatcher=[[CCDirector sharedDirector]touchDispatcher];
-        [touchDispatcher addTargetedDelegate:self priority:0 swallowsTouches:NO];
+        CCDirector *director=[CCDirector sharedDirector];
+        [[director touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
+        CGSize winSize = [director winSize];
+        for (int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                positions[i*3+j]=ccp(50+100*j,winSize.height-50-100*i);
+            }
+        }
     }
 	return self;
 }

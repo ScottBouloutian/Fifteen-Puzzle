@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "PuzzleBoard.h"
+#import "PuzzleEngine.h"
 #import "CCControlButton.h"
 #import "Tile.h"
 
@@ -18,12 +18,10 @@ static const int SCRAMBLE_DEPTH=30;
     CCControlButton *scrambleButton;
     CCLayerColor *layer;
     CCLabelTTF *statusLabel;
-    PuzzleBoard *puzzle;
+    PuzzleEngine *puzzle;
     Tile * selTile; //Stores the currently selected tile in edit mode
-    CGPoint selOldPosition; //Stores the position the currently selected tile used to be in before it was dragged away
     bool inEditMode;
     bool isMoving;
-    CCTouchDispatcher *touchDispatcher;
     CGPoint positions[9];
 }
 
