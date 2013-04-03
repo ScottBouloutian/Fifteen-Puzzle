@@ -11,10 +11,19 @@
 @implementation PuzzleLayer
 
 -(void)scrambleTouched:(id)sender{
+    for(int i=0;i<SCRAMBLE_DEPTH;i++){
+        [self swapTiles:[self getTile:[puzzle randomMove]]:[self getTile:9]];
+    }
+}
+
+-(void)solveTouched:(id)sender{
+    solveButton.enabled=NO;
     [puzzle solve];
-    //for(int i=0;i<SCRAMBLE_DEPTH;i++){
-    //    [self swapTiles:[self getTile:[puzzle randomMove]]:[self getTile:9]];
-    //}
+    solveButton.enabled=YES;
+}
+
+-(void)resetTouched:(id)sender{
+    NSLog(@"Reset Touched");
 }
 
 -(Tile*)getTile:(int)tileNumber{
@@ -29,11 +38,15 @@
 -(void)rearrangeTouched:(id)sender{
     if(inEditMode) {
         inEditMode=false;
-        scrambleButton.enabled=true;
+        scrambleButton.enabled=YES;
+        solveButton.enabled=YES;
+        resetButton.enabled=YES;
         [editButton setTitle:@"Rearrange" forState:CCControlStateNormal];
     }else{
         [editButton setTitle:@"Done" forState:CCControlStateNormal];
-        scrambleButton.enabled=false;
+        scrambleButton.enabled=NO;
+        solveButton.enabled=NO;
+        resetButton.enabled=NO;
         inEditMode=true;
     }
 }
@@ -148,6 +161,9 @@
 -(void)checkForSolution{
     if([puzzle isSolved]){
         statusLabel.string=@"Solved";
+    }
+    else if(![puzzle isSolvableState]){
+        statusLabel.string=@"Unsolvable Puzzle State";
     }
     else{
         statusLabel.string=@"Not Solved";

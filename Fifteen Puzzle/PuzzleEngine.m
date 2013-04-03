@@ -99,4 +99,21 @@
     return [currentState isSolved];
 }
 
+-(bool)isSolvableState{
+    int n=0;
+    for(int i=0;i<9;i++){
+        for(int j=i+1;j<9;j++){
+            if([currentState getTileAtIndex:i]!=8 && [currentState getTileAtIndex:j]!=8 && [currentState getTileAtIndex:j]<[currentState getTileAtIndex:i]){
+                n++;
+            }
+        }
+    }
+    if(n%2==0){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 @end

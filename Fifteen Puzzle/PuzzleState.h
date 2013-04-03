@@ -19,6 +19,8 @@
 -(void)copyFrom:(PuzzleState*)state;
 -(int)getTileRow:(int)tileNum;
 -(int)getTileCol:(int)tileNum;
+-(int)getTileIndex:(int)tileNum;
+-(int)getTileAtIndex:(int)index;
 -(void)calcTotalCost;
 -(void)print;
 @property int pathCost,totalCost;

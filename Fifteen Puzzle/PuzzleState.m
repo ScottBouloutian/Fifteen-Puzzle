@@ -107,6 +107,20 @@
     return tileCols[tileNum];
 }
 
+-(int)getTileIndex:(int)tileNum{
+    return tileRows[tileNum]*3+tileCols[tileNum];
+}
+
+-(int)getTileAtIndex:(int)index{
+    int tileRow=index/3;
+    int tileCol=index%3;
+    for(int i=0;i<9;i++){
+        if(tileRows[i]==tileRow && tileCols[i]==tileCol){
+            return i;
+        }
+    }
+}
+
 -(void)calcTotalCost{
     int heuristic=0;
     for (int i=0;i<9;i++){

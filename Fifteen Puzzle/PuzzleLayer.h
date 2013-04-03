@@ -16,6 +16,8 @@ static const int SCRAMBLE_DEPTH=30;
 @interface PuzzleLayer : CCLayer {
     CCControlButton *editButton;
     CCControlButton *scrambleButton;
+    CCControlButton *solveButton;
+    CCControlButton *resetButton;
     CCLayerColor *layer;
     CCLabelTTF *statusLabel;
     PuzzleEngine *puzzle;

@@ -19,5 +19,5 @@
 -(bool)isSolved;
 -(void)swapTiles:(int)tileOneNum:(int)tileTwoNum;
 -(void)solve;
-
+-(bool)isSolvableState;
 @end
