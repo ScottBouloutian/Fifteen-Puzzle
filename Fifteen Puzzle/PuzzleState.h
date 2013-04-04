@@ -22,6 +22,7 @@
 -(int)getTileIndex:(int)tileNum;
 -(int)getTileAtIndex:(int)index;
 -(void)calcTotalCost;
--(void)print;
-@property int pathCost,totalCost;
+-(void)setParentState:(PuzzleState*)parentState;
+@property int pathCost,totalCost,action;
+@property PuzzleState* parentState;
 @end

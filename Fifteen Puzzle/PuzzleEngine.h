@@ -13,11 +13,11 @@
     PuzzleState* currentState;
     int lastRandomMove;
 }
-
+-(void)resetPuzzle;
 -(int)randomMove;
 -(int)canMoveTile:(int)tileNumber;
 -(bool)isSolved;
 -(void)swapTiles:(int)tileOneNum:(int)tileTwoNum;
--(void)solve;
+-(NSMutableArray*)solve;
 -(bool)isSolvableState;
 @end

@@ -13,10 +13,14 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        currentState=[[PuzzleState alloc]init];
-        lastRandomMove=0;
+        [self resetPuzzle];
     }
 	return self;
+}
+
+-(void)resetPuzzle{
+    currentState=[[PuzzleState alloc]init];
+    lastRandomMove=0;
 }
 
 -(void)swapTiles:(int)tileOneNum:(int)tileTwoNum{
@@ -39,18 +43,18 @@
     return [currentState canMoveTile:tileNumber];
 }
 
--(void)solve{
+-(NSMutableArray*)solve{
     
     PuzzleState *node=currentState;
     NSMutableArray *frontier=[[NSMutableArray alloc]initWithObject:node];
     NSMutableArray *explored=[[NSMutableArray alloc]init];
+    NSMutableArray *solution=[[NSMutableArray alloc]init];
     
     while(1){
         
         //Fails if the frontier is empty
         if(frontier.count==0){
-            NSLog(@"Failed");
-            return;
+            return solution;
         }
         
         //Finds and removes the lowest-cost node in the frontier
@@ -62,8 +66,12 @@
         
         //Check to see if a solution is found
         if([node isSolved]){
-            NSLog(@"Solution Was Found");
-            return;
+            while(node.parentState!=nil){
+                [solution insertObject:[NSNumber numberWithInt:node.action] atIndex:0];
+                node=node.parentState;
+            }
+            
+            return solution;
         }
         
         //Add the node to list of explored states
@@ -75,7 +83,9 @@
         for(int i=0;i<num;i++){
             PuzzleState *child=[[PuzzleState alloc]init];
             [child copyFrom:node];
-            [child swapTiles:possible[i] :9];
+            child.action=possible[i];
+            child.parentState=node;
+            [child swapTiles:possible[i]:9];
             child.pathCost=node.pathCost+1;
             [child calcTotalCost];
             if([explored indexOfObject:child]==NSNotFound){

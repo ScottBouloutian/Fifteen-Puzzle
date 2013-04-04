@@ -9,7 +9,7 @@
 #import "PuzzleState.h"
 
 @implementation PuzzleState
-@synthesize pathCost,totalCost;
+@synthesize pathCost,totalCost,action,parentState;
 
 -(id) init
 {

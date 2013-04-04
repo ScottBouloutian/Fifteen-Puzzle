@@ -16,14 +16,27 @@
     }
 }
 
+-(void)moveTiles:(NSMutableArray*)tiles{
+    for(NSNumber *tileNum in tiles){
+        [self swapTiles:[self getTile:tileNum.intValue]:[self getTile:9]];
+    }
+}
+
 -(void)solveTouched:(id)sender{
-    solveButton.enabled=NO;
-    [puzzle solve];
-    solveButton.enabled=YES;
+    if(![puzzle isSolved] && [puzzle isSolvableState]){
+        solveButton.enabled=NO;
+        NSMutableArray *solution=[puzzle solve];
+        [self moveTiles:solution];
+        solveButton.enabled=YES;
+    }
 }
 
 -(void)resetTouched:(id)sender{
-    NSLog(@"Reset Touched");
+    [puzzle resetPuzzle];
+    for(int i=1;i<10;i++){
+        [self moveTile:[self getTile:i] toLocation:i];
+    }
+    [self checkForSolution];
 }
 
 -(Tile*)getTile:(int)tileNumber{
