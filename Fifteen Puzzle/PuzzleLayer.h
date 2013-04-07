@@ -21,10 +21,12 @@ static const int SCRAMBLE_DEPTH=30;
     CCLayerColor *layer;
     CCLabelTTF *statusLabel;
     PuzzleEngine *puzzle;
+    CCSprite *activityIndicator;
     Tile * selTile; //Stores the currently selected tile in edit mode
     bool inEditMode;
     bool isMoving;
     CGPoint positions[9];
+    NSOperationQueue *queue;
 }
 
 @end

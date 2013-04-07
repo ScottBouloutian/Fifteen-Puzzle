@@ -23,12 +23,45 @@
 }
 
 -(void)solveTouched:(id)sender{
-    if(![puzzle isSolved] && [puzzle isSolvableState]){
-        solveButton.enabled=NO;
-        NSMutableArray *solution=[puzzle solve];
-        [self moveTiles:solution];
-        solveButton.enabled=YES;
+    if([puzzle isSolved]){
+        return;
     }
+    else if(![puzzle isSolvableState]){
+        UIAlertView *view=[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Puzzle cannot be solved" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+        [view show];
+        [view release];
+    }
+    else{
+        CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.1 angle:-12.0];
+        [activityIndicator runAction:[CCRepeatForever actionWithAction:rotLeft]];
+        
+        activityIndicator.visible=YES;
+        scrambleButton.enabled=NO;
+        solveButton.enabled=NO;
+        resetButton.enabled=NO;
+        editButton.enabled=NO;
+        
+        
+        NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(solve) object:nil];
+        [queue addOperation:operation];
+    }
+}
+
+-(void) solve{
+    NSMutableArray *solution=[puzzle solve];
+    [self performSelectorOnMainThread:@selector(updateUI:) withObject:solution waitUntilDone:YES];
+}
+
+-(void) updateUI:(NSMutableArray*)solution{
+    [self moveTiles:solution];
+    editButton.enabled=YES;
+    resetButton.enabled=YES;
+    solveButton.enabled=YES;
+    scrambleButton.enabled=YES;
+    activityIndicator.visible=NO;
+    
+    [activityIndicator stopAllActions];
+    [activityIndicator runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
 }
 
 -(void)resetTouched:(id)sender{
@@ -50,16 +83,19 @@
 
 -(void)rearrangeTouched:(id)sender{
     if(inEditMode) {
-        inEditMode=false;
+        [selTile stopActionByTag:2];
+        [selTile runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
         scrambleButton.enabled=YES;
         solveButton.enabled=YES;
         resetButton.enabled=YES;
         [editButton setTitle:@"Rearrange" forState:CCControlStateNormal];
+        inEditMode=false;
     }else{
+        selTile=nil;
         [editButton setTitle:@"Done" forState:CCControlStateNormal];
-        scrambleButton.enabled=NO;
-        solveButton.enabled=NO;
         resetButton.enabled=NO;
+        solveButton.enabled=NO;
+        scrambleButton.enabled=NO;
         inEditMode=true;
     }
 }
@@ -109,7 +145,7 @@
             }
         }
     }
-
+    
     return true;
 }
 
@@ -122,18 +158,15 @@
         }
     }
     
-    if(newTile==nil){
-        [selTile stopAllActions];
-        [selTile runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
-        return;
-    }
-    if (newTile != selTile) {
+    if (newTile!=nil && newTile.number!=9 && newTile != selTile) {
         [selTile stopAllActions];
         [selTile runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
         CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.1 angle:-4.0];
         CCRotateTo * rotRight = [CCRotateBy actionWithDuration:0.1 angle:4.0];
         CCSequence * rotSeq = [CCSequence actions:rotLeft, rotRight, rotRight, rotLeft, nil];
-        [newTile runAction:[CCRepeatForever actionWithAction:rotSeq]];
+        CCRepeatForever* wiggle=[CCRepeatForever actionWithAction:rotSeq];
+        wiggle.tag=2;
+        [newTile runAction:wiggle];
         selTile = newTile;
     }
 }
@@ -153,14 +186,14 @@
 }
 
 -(void)moveTile:(Tile*)tile toLocation:(int)location{
-        isMoving=true;
-        id doneAction = [CCCallFuncN actionWithTarget:self selector:@selector(doneMoving)];
-        CCMoveTo *tileMove=[CCMoveTo actionWithDuration:0.25 position:positions[location-1]];
-        [tile stopActionByTag:1];
-        CCSequence *moveSeq=[CCSequence actions:tileMove,doneAction, nil];
-        moveSeq.tag=1;
-        [tile runAction:moveSeq];
-        tile.location=location;
+    isMoving=true;
+    id doneAction = [CCCallFuncN actionWithTarget:self selector:@selector(doneMoving)];
+    CCMoveTo *tileMove=[CCMoveTo actionWithDuration:0.25 position:positions[location-1]];
+    [tile stopActionByTag:1];
+    CCSequence *moveSeq=[CCSequence actions:tileMove,doneAction, nil];
+    moveSeq.tag=1;
+    [tile runAction:moveSeq];
+    tile.location=location;
 }
 
 -(void)swapTiles:(Tile*)tileOne:(Tile*)tileTwo{
@@ -186,6 +219,7 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
+        queue = [NSOperationQueue new];
         puzzle=[[PuzzleEngine alloc]init];
         inEditMode=false;
         isMoving=false;
