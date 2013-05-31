@@ -7,22 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE13F7C1174970830086565C /* output1.dat in Resources */ = {isa = PBXBuildFile; fileRef = CE13F7C0174970830086565C /* output1.dat */; };
+		CE13F7C41749708F0086565C /* output2.dat in Resources */ = {isa = PBXBuildFile; fileRef = CE13F7C21749708F0086565C /* output2.dat */; };
+		CE13F7C51749708F0086565C /* output3.dat in Resources */ = {isa = PBXBuildFile; fileRef = CE13F7C31749708F0086565C /* output3.dat */; };
 		CE3B7F771704AD6B0030E31B /* PuzzleState.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3B7F761704AD6B0030E31B /* PuzzleState.m */; };
-		CE504C311711F2E80099456E /* ccbDefaultImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE504C1F1711F2E80099456E /* ccbDefaultImages.plist */; };
-		CE504C321711F2E80099456E /* ccbDefaultImages.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C201711F2E80099456E /* ccbDefaultImages.png */; };
-		CE504C331711F2E80099456E /* ccbParticleFire.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C211711F2E80099456E /* ccbParticleFire.png */; };
-		CE504C341711F2E80099456E /* ccbParticleSmoke.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C221711F2E80099456E /* ccbParticleSmoke.png */; };
-		CE504C351711F2E80099456E /* ccbParticleSnow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C231711F2E80099456E /* ccbParticleSnow.png */; };
-		CE504C361711F2E80099456E /* ccbParticleStars.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C241711F2E80099456E /* ccbParticleStars.png */; };
-		CE504C371711F2E80099456E /* ccbDefaultImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE504C271711F2E80099456E /* ccbDefaultImages.plist */; };
-		CE504C381711F2E80099456E /* ccbDefaultImages.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C281711F2E80099456E /* ccbDefaultImages.png */; };
-		CE504C391711F2E80099456E /* fileLookup.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE504C291711F2E80099456E /* fileLookup.plist */; };
-		CE504C3A1711F2E80099456E /* PuzzleScene.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = CE504C2A1711F2E80099456E /* PuzzleScene.ccbi */; };
-		CE504C3B1711F2E80099456E /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C2C1711F2E80099456E /* loading.png */; };
-		CE504C3C1711F2E80099456E /* puzzle_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C2D1711F2E80099456E /* puzzle_tile.png */; };
-		CE504C3D1711F2E80099456E /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C2F1711F2E80099456E /* loading.png */; };
-		CE504C3E1711F2E80099456E /* puzzle_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = CE504C301711F2E80099456E /* puzzle_tile.png */; };
-		CE8537E716ED6A3700B2DE07 /* PuzzleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8537E616ED6A3700B2DE07 /* PuzzleLayer.m */; };
+		CE8537E716ED6A3700B2DE07 /* PuzzleLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE8537E616ED6A3700B2DE07 /* PuzzleLayer.mm */; };
 		CE85386716ED6C8000B2DE07 /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85382B16ED6C8000B2DE07 /* CCBAnimationManager.m */; };
 		CE85386816ED6C8000B2DE07 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85382D16ED6C8000B2DE07 /* CCBKeyframe.m */; };
 		CE85386916ED6C8000B2DE07 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE85382F16ED6C8000B2DE07 /* CCBReader.m */; };
@@ -45,6 +34,25 @@
 		CE85387A16ED6C8000B2DE07 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE85385416ED6C8000B2DE07 /* README.md */; };
 		CE909AD917064E4000E83F9C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE909AD817064E4000E83F9C /* CoreFoundation.framework */; };
 		CE992ED516FB95D800084D6B /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = CE992ED416FB95D800084D6B /* Tile.m */; };
+		CEBC0F5217569EB700E7C527 /* Solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBC0F5117569EB700E7C527 /* Solver.cpp */; };
+		CEC581F617125F85000177BA /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC581F417125F85000177BA /* icon@2x.png */; };
+		CEC581F717125F85000177BA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC581F517125F85000177BA /* icon.png */; };
+		CEC5820E17126632000177BA /* ccbDefaultImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEC581FA17126632000177BA /* ccbDefaultImages.plist */; };
+		CEC5820F17126632000177BA /* ccbDefaultImages.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC581FB17126632000177BA /* ccbDefaultImages.png */; };
+		CEC5821017126632000177BA /* ccbParticleFire.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC581FC17126632000177BA /* ccbParticleFire.png */; };
+		CEC5821117126632000177BA /* ccbParticleSmoke.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC581FD17126632000177BA /* ccbParticleSmoke.png */; };
+		CEC5821217126632000177BA /* ccbParticleSnow.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC581FE17126632000177BA /* ccbParticleSnow.png */; };
+		CEC5821317126632000177BA /* ccbParticleStars.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC581FF17126632000177BA /* ccbParticleStars.png */; };
+		CEC5821417126632000177BA /* ccbDefaultImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820217126632000177BA /* ccbDefaultImages.plist */; };
+		CEC5821517126632000177BA /* ccbDefaultImages.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820317126632000177BA /* ccbDefaultImages.png */; };
+		CEC5821617126632000177BA /* fileLookup.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820417126632000177BA /* fileLookup.plist */; };
+		CEC5821717126632000177BA /* PuzzleScene.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820517126632000177BA /* PuzzleScene.ccbi */; };
+		CEC5821817126632000177BA /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820717126632000177BA /* arrow.png */; };
+		CEC5821917126632000177BA /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820817126632000177BA /* loading.png */; };
+		CEC5821A17126632000177BA /* puzzle_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820917126632000177BA /* puzzle_tile.png */; };
+		CEC5821B17126632000177BA /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820B17126632000177BA /* arrow.png */; };
+		CEC5821C17126632000177BA /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820C17126632000177BA /* loading.png */; };
+		CEC5821D17126632000177BA /* puzzle_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC5820D17126632000177BA /* puzzle_tile.png */; };
 		CEF4040D16E5CEF6005090BB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF4040C16E5CEF6005090BB /* QuartzCore.framework */; };
 		CEF4040F16E5CEF6005090BB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF4040E16E5CEF6005090BB /* OpenGLES.framework */; };
 		CEF4041116E5CEF6005090BB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF4041016E5CEF6005090BB /* OpenAL.framework */; };
@@ -175,29 +183,18 @@
 		CEF405A616E5CEF9005090BB /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF405A516E5CEF9005090BB /* vec4.c */; };
 		CEF405AB16E5CEF9005090BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405AA16E5CEF9005090BB /* main.m */; };
 		CEF405AE16E5CEF9005090BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405AD16E5CEF9005090BB /* AppDelegate.m */; };
-		CEF405BC16E5D05B005090BB /* PuzzleEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF405BB16E5D05B005090BB /* PuzzleEngine.m */; };
+		CEF405BC16E5D05B005090BB /* PuzzleEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF405BB16E5D05B005090BB /* PuzzleEngine.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE13F7C0174970830086565C /* output1.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = output1.dat; sourceTree = "<group>"; };
+		CE13F7C21749708F0086565C /* output2.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = output2.dat; sourceTree = "<group>"; };
+		CE13F7C31749708F0086565C /* output3.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = output3.dat; sourceTree = "<group>"; };
 		CE1E254A16FC2A740021CA2B /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		CE3B7F751704AD6B0030E31B /* PuzzleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleState.h; sourceTree = "<group>"; };
 		CE3B7F761704AD6B0030E31B /* PuzzleState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleState.m; sourceTree = "<group>"; };
-		CE504C1F1711F2E80099456E /* ccbDefaultImages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ccbDefaultImages.plist; sourceTree = "<group>"; };
-		CE504C201711F2E80099456E /* ccbDefaultImages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbDefaultImages.png; sourceTree = "<group>"; };
-		CE504C211711F2E80099456E /* ccbParticleFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleFire.png; sourceTree = "<group>"; };
-		CE504C221711F2E80099456E /* ccbParticleSmoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleSmoke.png; sourceTree = "<group>"; };
-		CE504C231711F2E80099456E /* ccbParticleSnow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleSnow.png; sourceTree = "<group>"; };
-		CE504C241711F2E80099456E /* ccbParticleStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleStars.png; sourceTree = "<group>"; };
-		CE504C271711F2E80099456E /* ccbDefaultImages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ccbDefaultImages.plist; sourceTree = "<group>"; };
-		CE504C281711F2E80099456E /* ccbDefaultImages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbDefaultImages.png; sourceTree = "<group>"; };
-		CE504C291711F2E80099456E /* fileLookup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fileLookup.plist; sourceTree = "<group>"; };
-		CE504C2A1711F2E80099456E /* PuzzleScene.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = PuzzleScene.ccbi; sourceTree = "<group>"; };
-		CE504C2C1711F2E80099456E /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
-		CE504C2D1711F2E80099456E /* puzzle_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_tile.png; sourceTree = "<group>"; };
-		CE504C2F1711F2E80099456E /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
-		CE504C301711F2E80099456E /* puzzle_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_tile.png; sourceTree = "<group>"; };
 		CE8537E516ED6A3700B2DE07 /* PuzzleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleLayer.h; sourceTree = "<group>"; };
-		CE8537E616ED6A3700B2DE07 /* PuzzleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleLayer.m; sourceTree = "<group>"; };
+		CE8537E616ED6A3700B2DE07 /* PuzzleLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PuzzleLayer.mm; sourceTree = "<group>"; };
 		CE85382A16ED6C8000B2DE07 /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
 		CE85382B16ED6C8000B2DE07 /* CCBAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBAnimationManager.m; sourceTree = "<group>"; };
 		CE85382C16ED6C8000B2DE07 /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
@@ -240,6 +237,26 @@
 		CE909AD817064E4000E83F9C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CE992ED316FB95D800084D6B /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
 		CE992ED416FB95D800084D6B /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
+		CEBC0F5017569EB600E7C527 /* Solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solver.h; sourceTree = "<group>"; };
+		CEBC0F5117569EB700E7C527 /* Solver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Solver.cpp; sourceTree = "<group>"; };
+		CEC581F417125F85000177BA /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		CEC581F517125F85000177BA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		CEC581FA17126632000177BA /* ccbDefaultImages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ccbDefaultImages.plist; sourceTree = "<group>"; };
+		CEC581FB17126632000177BA /* ccbDefaultImages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbDefaultImages.png; sourceTree = "<group>"; };
+		CEC581FC17126632000177BA /* ccbParticleFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleFire.png; sourceTree = "<group>"; };
+		CEC581FD17126632000177BA /* ccbParticleSmoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleSmoke.png; sourceTree = "<group>"; };
+		CEC581FE17126632000177BA /* ccbParticleSnow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleSnow.png; sourceTree = "<group>"; };
+		CEC581FF17126632000177BA /* ccbParticleStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbParticleStars.png; sourceTree = "<group>"; };
+		CEC5820217126632000177BA /* ccbDefaultImages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ccbDefaultImages.plist; sourceTree = "<group>"; };
+		CEC5820317126632000177BA /* ccbDefaultImages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ccbDefaultImages.png; sourceTree = "<group>"; };
+		CEC5820417126632000177BA /* fileLookup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fileLookup.plist; sourceTree = "<group>"; };
+		CEC5820517126632000177BA /* PuzzleScene.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = PuzzleScene.ccbi; sourceTree = "<group>"; };
+		CEC5820717126632000177BA /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		CEC5820817126632000177BA /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		CEC5820917126632000177BA /* puzzle_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_tile.png; sourceTree = "<group>"; };
+		CEC5820B17126632000177BA /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		CEC5820C17126632000177BA /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		CEC5820D17126632000177BA /* puzzle_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_tile.png; sourceTree = "<group>"; };
 		CEF4040916E5CEF6005090BB /* Fifteen Puzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fifteen Puzzle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF4040C16E5CEF6005090BB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CEF4040E16E5CEF6005090BB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -514,7 +531,7 @@
 		CEF405AC16E5CEF9005090BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEF405AD16E5CEF9005090BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CEF405BA16E5D05B005090BB /* PuzzleEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleEngine.h; sourceTree = "<group>"; };
-		CEF405BB16E5D05B005090BB /* PuzzleEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleEngine.m; sourceTree = "<group>"; };
+		CEF405BB16E5D05B005090BB /* PuzzleEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PuzzleEngine.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,67 +555,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE504C1D1711F2E80099456E /* Published-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				CE504C1E1711F2E80099456E /* ccbResources */,
-				CE504C291711F2E80099456E /* fileLookup.plist */,
-				CE504C2A1711F2E80099456E /* PuzzleScene.ccbi */,
-				CE504C2B1711F2E80099456E /* resources-iphone */,
-				CE504C2E1711F2E80099456E /* resources-iphonehd */,
-			);
-			path = "Published-iOS";
-			sourceTree = "<group>";
-		};
-		CE504C1E1711F2E80099456E /* ccbResources */ = {
-			isa = PBXGroup;
-			children = (
-				CE504C1F1711F2E80099456E /* ccbDefaultImages.plist */,
-				CE504C201711F2E80099456E /* ccbDefaultImages.png */,
-				CE504C211711F2E80099456E /* ccbParticleFire.png */,
-				CE504C221711F2E80099456E /* ccbParticleSmoke.png */,
-				CE504C231711F2E80099456E /* ccbParticleSnow.png */,
-				CE504C241711F2E80099456E /* ccbParticleStars.png */,
-				CE504C251711F2E80099456E /* resources-iphone */,
-				CE504C261711F2E80099456E /* resources-iphonehd */,
-			);
-			path = ccbResources;
-			sourceTree = "<group>";
-		};
-		CE504C251711F2E80099456E /* resources-iphone */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "resources-iphone";
-			sourceTree = "<group>";
-		};
-		CE504C261711F2E80099456E /* resources-iphonehd */ = {
-			isa = PBXGroup;
-			children = (
-				CE504C271711F2E80099456E /* ccbDefaultImages.plist */,
-				CE504C281711F2E80099456E /* ccbDefaultImages.png */,
-			);
-			path = "resources-iphonehd";
-			sourceTree = "<group>";
-		};
-		CE504C2B1711F2E80099456E /* resources-iphone */ = {
-			isa = PBXGroup;
-			children = (
-				CE504C2C1711F2E80099456E /* loading.png */,
-				CE504C2D1711F2E80099456E /* puzzle_tile.png */,
-			);
-			path = "resources-iphone";
-			sourceTree = "<group>";
-		};
-		CE504C2E1711F2E80099456E /* resources-iphonehd */ = {
-			isa = PBXGroup;
-			children = (
-				CE504C2F1711F2E80099456E /* loading.png */,
-				CE504C301711F2E80099456E /* puzzle_tile.png */,
-			);
-			path = "resources-iphonehd";
-			sourceTree = "<group>";
-		};
 		CE85382816ED6C8000B2DE07 /* CCBReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -704,10 +660,72 @@
 			name = Default;
 			sourceTree = "<group>";
 		};
+		CEC581F817126632000177BA /* Published-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC581F917126632000177BA /* ccbResources */,
+				CEC5820417126632000177BA /* fileLookup.plist */,
+				CEC5820517126632000177BA /* PuzzleScene.ccbi */,
+				CEC5820617126632000177BA /* resources-iphone */,
+				CEC5820A17126632000177BA /* resources-iphonehd */,
+			);
+			path = "Published-iOS";
+			sourceTree = "<group>";
+		};
+		CEC581F917126632000177BA /* ccbResources */ = {
+			isa = PBXGroup;
+			children = (
+				CEC581FA17126632000177BA /* ccbDefaultImages.plist */,
+				CEC581FB17126632000177BA /* ccbDefaultImages.png */,
+				CEC581FC17126632000177BA /* ccbParticleFire.png */,
+				CEC581FD17126632000177BA /* ccbParticleSmoke.png */,
+				CEC581FE17126632000177BA /* ccbParticleSnow.png */,
+				CEC581FF17126632000177BA /* ccbParticleStars.png */,
+				CEC5820017126632000177BA /* resources-iphone */,
+				CEC5820117126632000177BA /* resources-iphonehd */,
+			);
+			path = ccbResources;
+			sourceTree = "<group>";
+		};
+		CEC5820017126632000177BA /* resources-iphone */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "resources-iphone";
+			sourceTree = "<group>";
+		};
+		CEC5820117126632000177BA /* resources-iphonehd */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5820217126632000177BA /* ccbDefaultImages.plist */,
+				CEC5820317126632000177BA /* ccbDefaultImages.png */,
+			);
+			path = "resources-iphonehd";
+			sourceTree = "<group>";
+		};
+		CEC5820617126632000177BA /* resources-iphone */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5820717126632000177BA /* arrow.png */,
+				CEC5820817126632000177BA /* loading.png */,
+				CEC5820917126632000177BA /* puzzle_tile.png */,
+			);
+			path = "resources-iphone";
+			sourceTree = "<group>";
+		};
+		CEC5820A17126632000177BA /* resources-iphonehd */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5820B17126632000177BA /* arrow.png */,
+				CEC5820C17126632000177BA /* loading.png */,
+				CEC5820D17126632000177BA /* puzzle_tile.png */,
+			);
+			path = "resources-iphonehd";
+			sourceTree = "<group>";
+		};
 		CEF4040016E5CEF6005090BB = {
 			isa = PBXGroup;
 			children = (
-				CE909AD817064E4000E83F9C /* CoreFoundation.framework */,
 				CEF4041E16E5CEF6005090BB /* Fifteen Puzzle */,
 				CEF4040B16E5CEF6005090BB /* Frameworks */,
 				CEF4040A16E5CEF6005090BB /* Products */,
@@ -725,6 +743,7 @@
 		CEF4040B16E5CEF6005090BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE909AD817064E4000E83F9C /* CoreFoundation.framework */,
 				CEF4040C16E5CEF6005090BB /* QuartzCore.framework */,
 				CEF4040E16E5CEF6005090BB /* OpenGLES.framework */,
 				CEF4041016E5CEF6005090BB /* OpenAL.framework */,
@@ -741,6 +760,8 @@
 		CEF4041E16E5CEF6005090BB /* Fifteen Puzzle */ = {
 			isa = PBXGroup;
 			children = (
+				CEBC0F5017569EB600E7C527 /* Solver.h */,
+				CEBC0F5117569EB700E7C527 /* Solver.cpp */,
 				CE3B7F751704AD6B0030E31B /* PuzzleState.h */,
 				CE3B7F761704AD6B0030E31B /* PuzzleState.m */,
 				CE992ED316FB95D800084D6B /* Tile.h */,
@@ -748,9 +769,9 @@
 				CEF405AC16E5CEF9005090BB /* AppDelegate.h */,
 				CEF405AD16E5CEF9005090BB /* AppDelegate.m */,
 				CE8537E516ED6A3700B2DE07 /* PuzzleLayer.h */,
-				CE8537E616ED6A3700B2DE07 /* PuzzleLayer.m */,
+				CE8537E616ED6A3700B2DE07 /* PuzzleLayer.mm */,
 				CEF405BA16E5D05B005090BB /* PuzzleEngine.h */,
-				CEF405BB16E5D05B005090BB /* PuzzleEngine.m */,
+				CEF405BB16E5D05B005090BB /* PuzzleEngine.mm */,
 				CEF4041F16E5CEF6005090BB /* Resources */,
 				CEF4043716E5CEF6005090BB /* libs */,
 				CEF405A816E5CEF9005090BB /* Supporting Files */,
@@ -761,7 +782,9 @@
 		CEF4041F16E5CEF6005090BB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CE504C1D1711F2E80099456E /* Published-iOS */,
+				CEC581F417125F85000177BA /* icon@2x.png */,
+				CEC581F517125F85000177BA /* icon.png */,
+				CEC581F817126632000177BA /* Published-iOS */,
 				CE8F91F116EBB0E5009D3ABC /* Default */,
 			);
 			name = Resources;
@@ -1122,6 +1145,9 @@
 		CEF405A816E5CEF9005090BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CE13F7C0174970830086565C /* output1.dat */,
+				CE13F7C21749708F0086565C /* output2.dat */,
+				CE13F7C31749708F0086565C /* output3.dat */,
 				CE1E254A16FC2A740021CA2B /* Prefix.pch */,
 				CEF405AA16E5CEF9005090BB /* main.m */,
 			);
@@ -1192,20 +1218,27 @@
 				CEF4043616E5CEF6005090BB /* iTunesArtwork in Resources */,
 				CEF4058C16E5CEF9005090BB /* ChangeLog in Resources */,
 				CE85387A16ED6C8000B2DE07 /* README.md in Resources */,
-				CE504C311711F2E80099456E /* ccbDefaultImages.plist in Resources */,
-				CE504C321711F2E80099456E /* ccbDefaultImages.png in Resources */,
-				CE504C331711F2E80099456E /* ccbParticleFire.png in Resources */,
-				CE504C341711F2E80099456E /* ccbParticleSmoke.png in Resources */,
-				CE504C351711F2E80099456E /* ccbParticleSnow.png in Resources */,
-				CE504C361711F2E80099456E /* ccbParticleStars.png in Resources */,
-				CE504C371711F2E80099456E /* ccbDefaultImages.plist in Resources */,
-				CE504C381711F2E80099456E /* ccbDefaultImages.png in Resources */,
-				CE504C391711F2E80099456E /* fileLookup.plist in Resources */,
-				CE504C3A1711F2E80099456E /* PuzzleScene.ccbi in Resources */,
-				CE504C3B1711F2E80099456E /* loading.png in Resources */,
-				CE504C3C1711F2E80099456E /* puzzle_tile.png in Resources */,
-				CE504C3D1711F2E80099456E /* loading.png in Resources */,
-				CE504C3E1711F2E80099456E /* puzzle_tile.png in Resources */,
+				CEC581F617125F85000177BA /* icon@2x.png in Resources */,
+				CEC581F717125F85000177BA /* icon.png in Resources */,
+				CEC5820E17126632000177BA /* ccbDefaultImages.plist in Resources */,
+				CEC5820F17126632000177BA /* ccbDefaultImages.png in Resources */,
+				CEC5821017126632000177BA /* ccbParticleFire.png in Resources */,
+				CEC5821117126632000177BA /* ccbParticleSmoke.png in Resources */,
+				CEC5821217126632000177BA /* ccbParticleSnow.png in Resources */,
+				CEC5821317126632000177BA /* ccbParticleStars.png in Resources */,
+				CEC5821417126632000177BA /* ccbDefaultImages.plist in Resources */,
+				CEC5821517126632000177BA /* ccbDefaultImages.png in Resources */,
+				CEC5821617126632000177BA /* fileLookup.plist in Resources */,
+				CEC5821717126632000177BA /* PuzzleScene.ccbi in Resources */,
+				CEC5821817126632000177BA /* arrow.png in Resources */,
+				CEC5821917126632000177BA /* loading.png in Resources */,
+				CEC5821A17126632000177BA /* puzzle_tile.png in Resources */,
+				CEC5821B17126632000177BA /* arrow.png in Resources */,
+				CEC5821C17126632000177BA /* loading.png in Resources */,
+				CEC5821D17126632000177BA /* puzzle_tile.png in Resources */,
+				CE13F7C1174970830086565C /* output1.dat in Resources */,
+				CE13F7C41749708F0086565C /* output2.dat in Resources */,
+				CE13F7C51749708F0086565C /* output3.dat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,8 +1358,8 @@
 				CEF405A616E5CEF9005090BB /* vec4.c in Sources */,
 				CEF405AB16E5CEF9005090BB /* main.m in Sources */,
 				CEF405AE16E5CEF9005090BB /* AppDelegate.m in Sources */,
-				CEF405BC16E5D05B005090BB /* PuzzleEngine.m in Sources */,
-				CE8537E716ED6A3700B2DE07 /* PuzzleLayer.m in Sources */,
+				CEF405BC16E5D05B005090BB /* PuzzleEngine.mm in Sources */,
+				CE8537E716ED6A3700B2DE07 /* PuzzleLayer.mm in Sources */,
 				CE85386716ED6C8000B2DE07 /* CCBAnimationManager.m in Sources */,
 				CE85386816ED6C8000B2DE07 /* CCBKeyframe.m in Sources */,
 				CE85386916ED6C8000B2DE07 /* CCBReader.m in Sources */,
@@ -1348,6 +1381,7 @@
 				CE85387916ED6C8000B2DE07 /* Utils.m in Sources */,
 				CE992ED516FB95D800084D6B /* Tile.m in Sources */,
 				CE3B7F771704AD6B0030E31B /* PuzzleState.m in Sources */,
+				CEBC0F5217569EB700E7C527 /* Solver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

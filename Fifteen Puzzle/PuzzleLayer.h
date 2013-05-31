@@ -18,15 +18,19 @@ static const int SCRAMBLE_DEPTH=30;
     CCControlButton *scrambleButton;
     CCControlButton *solveButton;
     CCControlButton *resetButton;
-    CCLayerColor *layer;
+    CCLayer *tileLayer;
     CCLabelTTF *statusLabel;
     PuzzleEngine *puzzle;
     CCSprite *activityIndicator;
     Tile * selTile; //Stores the currently selected tile in edit mode
     bool inEditMode;
     bool isMoving;
-    CGPoint positions[9];
+    CGPoint positions[16];
     NSOperationQueue *queue;
+    CCSprite *arrowLeft;
+    CCSprite *arrowRight;
+    NSMutableArray *_solution;
+    int step;
 }
 
 @end

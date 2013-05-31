@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PuzzleState.h"
+#import "Solver.h"
 
 @interface PuzzleEngine : NSObject{
     PuzzleState* currentState;

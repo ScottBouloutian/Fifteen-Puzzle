@@ -9,12 +9,11 @@
 #import "CCSprite.h"
 
 @interface Tile : CCSprite{
-        int location;
-        int number;
-    }
-    
-    @property (nonatomic,assign) int location;
-    @property (nonatomic,assign) int number;
+    int location;
+    int number;
+}
 
+@property (nonatomic,assign) int location;
+@property (nonatomic,assign) int number;
 
-    @end
+@end

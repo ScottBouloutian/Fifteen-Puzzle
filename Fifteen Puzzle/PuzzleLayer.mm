@@ -11,18 +11,59 @@
 @implementation PuzzleLayer
 
 -(void)scrambleTouched:(id)sender{
+
+    //Make the arrows invisible
+    arrowLeft.visible=NO;
+    arrowRight.visible=NO;
+
     for(int i=0;i<SCRAMBLE_DEPTH;i++){
-        [self swapTiles:[self getTile:[puzzle randomMove]]:[self getTile:9]];
+        [self swapTiles:[self getTile:[puzzle randomMove]]:[self getTile:16]];
     }
 }
 
--(void)moveTiles:(NSMutableArray*)tiles{
-    for(NSNumber *tileNum in tiles){
-        [self swapTiles:[self getTile:tileNum.intValue]:[self getTile:9]];
-    }
-}
+//-(void)moveTilesSequentialy:(NSMutableArray*)tiles{
+//    isMoving=true;
+//    tileSequence=tiles;
+//    count=0;
+//    
+//    [self doneMovingSequentialy];
+//}
+//
+//-(void)doneMovingSequentialy{
+//    if(count>=tileSequence.count){
+//        isMoving=false;
+//        return;
+//    }
+//    else{
+//        NSNumber *tileNumber=[tileSequence objectAtIndex:count];
+//        count++;
+//        Tile* tile=[self getTile:tileNumber.intValue];
+//        Tile* blank=[self getTile:9];
+//        
+//        //Swap the locations of the tiles
+//        [puzzle swapTiles:tileNumber.intValue :9];
+//        int tmpLoc=blank.location;
+//        blank.location=tile.location;
+//        tile.location=tmpLoc;
+//
+//        //Move the blank space to its new position
+//        blank.position=positions[blank.location-1];
+//        
+//        //Move the tile to the blank space's position
+//        CCMoveTo *tileMove=[CCMoveTo actionWithDuration:0.25 position:positions[tile.location-1]];
+//        id doneAction = [CCCallFuncN actionWithTarget:self selector:@selector(doneMovingSequentialy)];
+//        CCSequence *moveSeq=[CCSequence actions:tileMove,doneAction, nil];
+//        [tile runAction:moveSeq];
+//        
+//    }
+//}
 
 -(void)solveTouched:(id)sender{
+    
+    //Make the arrows invisible
+    arrowLeft.visible=NO;
+    arrowRight.visible=NO;
+
     if([puzzle isSolved]){
         return;
     }
@@ -41,7 +82,6 @@
         resetButton.enabled=NO;
         editButton.enabled=NO;
         
-        
         NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(solve) object:nil];
         [queue addOperation:operation];
     }
@@ -53,27 +93,40 @@
 }
 
 -(void) updateUI:(NSMutableArray*)solution{
-    [self moveTiles:solution];
+    //Allow user to touch arrows to progress through the solution sequence
+    _solution=solution;
+    step=0;
+    arrowLeft.visible=true;
+    arrowRight.visible=true;
+    statusLabel.string=@"Touch Arrows to View Solution";
+    
+    //Re-enable the buttons
     editButton.enabled=YES;
     resetButton.enabled=YES;
     solveButton.enabled=YES;
     scrambleButton.enabled=YES;
+
+    //Stop the loading animation
     activityIndicator.visible=NO;
-    
     [activityIndicator stopAllActions];
     [activityIndicator runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
 }
 
 -(void)resetTouched:(id)sender{
+
+    //Make the arrows invisible
+    arrowLeft.visible=NO;
+    arrowRight.visible=NO;
+
     [puzzle resetPuzzle];
-    for(int i=1;i<10;i++){
+    for(int i=1;i<17;i++){
         [self moveTile:[self getTile:i] toLocation:i];
     }
     [self checkForSolution];
 }
 
 -(Tile*)getTile:(int)tileNumber{
-    for(Tile *tile in layer.children){
+    for(Tile *tile in tileLayer.children){
         if(tile.number==tileNumber){
             return tile;
         }
@@ -82,6 +135,11 @@
 }
 
 -(void)rearrangeTouched:(id)sender{
+    
+    //Make the arrows invisible
+    arrowLeft.visible=NO;
+    arrowRight.visible=NO;
+
     if(inEditMode) {
         [selTile stopActionByTag:2];
         [selTile runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
@@ -106,7 +164,7 @@
         float minDistance=ccpDistance(selTile.position, positions[selTile.location-1]);
         Tile *closestTile=selTile;
         
-        for (Tile *tile in layer.children) {
+        for (Tile *tile in tileLayer.children) {
             
             //If they are not the same tile...
             if(selTile.number!=tile.number){
@@ -125,23 +183,46 @@
         }else{
             [self swapTiles:selTile :closestTile];
         }
-    }}
+    }
+    
+    //Check for the touch of one of the arrows used to step through the solution sequence
+    CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
+    if(arrowLeft.visible && CGRectContainsPoint([arrowLeft boundingBox], touchLocation)){
+        if(step>0){
+            step--;
+            NSNumber *tileNum=[_solution objectAtIndex:step];
+            [self swapTiles:[self getTile:tileNum.intValue] :[self getTile:16]];
+        }
+    }
+    else if(arrowRight.visible && CGRectContainsPoint([arrowRight boundingBox], touchLocation)){
+        if(step<_solution.count){
+            NSNumber *tileNum=[_solution objectAtIndex:step];
+            [self swapTiles:[self getTile:tileNum.intValue] :[self getTile:16]];
+            step++;
+        }
+    }
+}
 
 -(void)doneMoving{
     isMoving=false;
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    CGPoint touchLocation = [tileLayer convertTouchToNodeSpace:touch];
     if(inEditMode & !isMoving){
-        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
         [self selectSpriteForTouch:touchLocation];
     }else if(!inEditMode){
-        CGPoint location = [self convertTouchToNodeSpace:touch];
-        for (Tile *tile in layer.children) {
-            if(CGRectContainsPoint([tile boundingBox], location)){
+        for (Tile *tile in tileLayer.children) {
+            if(CGRectContainsPoint([tile boundingBox], touchLocation)){
                 if([puzzle canMoveTile:tile.number]!=0){
-                    [self swapTiles:tile:[self getTile:9]];
+                    [self swapTiles:tile:[self getTile:16]];
                 }
+                
+                //Make the arrows invisible if you slide a tile
+                arrowLeft.visible=NO;
+                arrowRight.visible=NO;
+
+                return true;
             }
         }
     }
@@ -151,14 +232,14 @@
 
 - (void)selectSpriteForTouch:(CGPoint)touchLocation {
     Tile * newTile = nil;
-    for (Tile *tile in layer.children) {
+    for (Tile *tile in tileLayer.children) {
         if (CGRectContainsPoint(tile.boundingBox, touchLocation)) {
             newTile = tile;
             break;
         }
     }
     
-    if (newTile!=nil && newTile.number!=9 && newTile != selTile) {
+    if (newTile!=nil && newTile.number!=16 && newTile != selTile) {
         [selTile stopAllActions];
         [selTile runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
         CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.1 angle:-4.0];
@@ -173,11 +254,11 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
     if(inEditMode & !isMoving){
-        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
+        CGPoint touchLocation = [tileLayer convertTouchToNodeSpace:touch];
         
         CGPoint oldTouchLocation = [touch previousLocationInView:touch.view];
         oldTouchLocation = [[CCDirector sharedDirector] convertToGL:oldTouchLocation];
-        oldTouchLocation = [self convertToNodeSpace:oldTouchLocation];
+        oldTouchLocation = [tileLayer convertToNodeSpace:oldTouchLocation];
         
         CGPoint translation = ccpSub(touchLocation, oldTouchLocation);
         CGPoint newPos = ccpAdd(selTile.position, translation);
@@ -225,12 +306,12 @@
         isMoving=false;
         CCDirector *director=[CCDirector sharedDirector];
         [[director touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
-        CGSize winSize = [director winSize];
-        for (int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                positions[i*3+j]=ccp(50+100*j,winSize.height-50-100*i);
+        for (int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                positions[i*4+j]=ccp(37.5+75*j,300-37.5-75*i);
             }
         }
+        NSLog(@"%f,%f",positions[10].x,positions[10].y);
     }
 	return self;
 }

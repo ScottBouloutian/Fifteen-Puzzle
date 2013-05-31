@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PuzzleState : NSObject{
-    int tileRows[9]; //stores the row that each tile is in
-    int tileCols[9]; //stores the column that each tile is in
+    int tileRows[16]; //stores the row that each tile is in
+    int tileCols[16]; //stores the column that each tile is in
 }
 -(void)swapTiles:(int)tileOneNum:(int)tileTwoNum;
 -(int)canMoveTile:(int)tileNumber;
@@ -21,8 +21,4 @@
 -(int)getTileCol:(int)tileNum;
 -(int)getTileIndex:(int)tileNum;
 -(int)getTileAtIndex:(int)index;
--(void)calcTotalCost;
--(void)setParentState:(PuzzleState*)parentState;
-@property int pathCost,totalCost,action;
-@property PuzzleState* parentState;
 @end

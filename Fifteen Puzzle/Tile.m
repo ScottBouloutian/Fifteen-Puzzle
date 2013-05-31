@@ -11,5 +11,4 @@
 @implementation Tile
 @synthesize location;
 @synthesize number;
-
 @end
