@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 typedef unsigned char byte;
 
@@ -25,12 +26,16 @@ private:
     byte emptyCol;
     byte pathCost;
     byte action;
-    bool valid=false;
+    Node *parent;
 public:
     Node(){
     }
-    Node(byte _tiles[16],byte _pathCost,byte _action){
-        valid=true;
+    ~Node(){
+        if (parent!=NULL){
+            delete parent;
+        }
+    }
+    Node(byte _tiles[16],byte _pathCost,byte _action,Node *_parent){
         for(byte i=0;i<16;i++){
             tiles[i]=_tiles[i];
             if(tiles[i]==0){
@@ -40,9 +45,7 @@ public:
         }
         pathCost=_pathCost;
         action=_action;
-    }
-    bool isNull(){
-        return !valid;
+        parent=_parent;
     }
     byte* getTiles(){
         return tiles;
@@ -63,6 +66,9 @@ public:
     }
     byte getAction(){
         return action;
+    }
+    Node* getParent(){
+        return parent;
     }
     void print(){
         std::cout<<"-----------------------"<<std::endl;
@@ -88,19 +94,19 @@ private:
     void loadDatabase(std::string&);
     void loadChooseTable();
     int choose(int,int);
-    byte heuristic(Node&);
+    byte heuristic(Node*);
     int calculateIndex(byte[16]);
     byte findPermutation(byte[16]);
-    Node depthFirstSearch(Node&,byte);
-    bool solved(Node&);
-    void possibleMoves(Node&,bool[4]);
-    Node swapBlank(Node&,byte);
-    byte getChildren(Node&,Node[4]);
+    Node* depthFirstSearch(Node*,byte);
+    bool solved(Node*);
+    void possibleMoves(Node*,bool[4]);
+    Node* swapBlank(Node*,byte);
+    byte getChildren(Node*,Node*[4]);
     byte inverseOfAction(byte);
 public:
     Solver(std::string&);
     ~Solver();
-    void solve(Node&);
+    std::string solve(Node*);
 };
 
 #endif /* defined(___5_Solver__Solver__) */

@@ -55,19 +55,26 @@ int Solver::choose(int n,int r){
     return choose(n-1,r-1)+choose(n-1,r);
 }
 
-void Solver::solve(Node& start){
+string Solver::solve(Node* start){
     byte nextCostBound=heuristic(start);
-    Node solution;
+    Node* solution=NULL;
     exploredNodes=0;
-    while(solution.isNull()){
+    while(solution==NULL){
         solution=depthFirstSearch(start, nextCostBound);
         nextCostBound+=2;
     }
+    ostringstream result;
+    while(solution->getParent()!=NULL){
+        result<<(int)solution->getAction();
+        solution=solution->getParent();
+    }
+    cout<<result.str()<<endl;
     cout<<"SolutionFound";
+    return result.str();
 }
 
-byte Solver::heuristic(Node& node){
-    byte* tiles=node.getTiles();
+byte Solver::heuristic(Node* node){
+    byte* tiles=node->getTiles();
     byte pattern1[16];
     byte pattern2[16];
     byte pattern3[16];
@@ -167,7 +174,7 @@ byte Solver::findPermutation(byte pattern[16]){
     return LOOKUP[n];
 }
 
-Node Solver::depthFirstSearch(Node& current,byte currentCostBound){
+Node* Solver::depthFirstSearch(Node* current,byte currentCostBound){
     if(solved(current)){
         return current;
     }
@@ -175,23 +182,22 @@ Node Solver::depthFirstSearch(Node& current,byte currentCostBound){
     if(exploredNodes%50000==0){
         cout<<"explored nodes for this threshold "<<(int)currentCostBound<<" "<<exploredNodes<<endl;
     }
-    Node children[4];
+    Node* children[4];
     byte n=getChildren(current, children);
     for(int i=0;i<n;i++){
-        byte value=children[i].getPathCost()+heuristic(children[i]);
+        byte value=children[i]->getPathCost()+heuristic(children[i]);
         if(value<=currentCostBound){
-            Node result=depthFirstSearch(children[i], currentCostBound);
-            if(!result.isNull()){
+            Node *result=depthFirstSearch(children[i], currentCostBound);
+            if(result!=NULL){
                 return result;
             }
         }
     }
-    Node result;
-    return result;
+    return NULL;
 }
 
-bool Solver::solved(Node& node){
-    byte* tiles=node.getTiles();
+bool Solver::solved(Node* node){
+    byte* tiles=node->getTiles();
     for(byte i=0;i<15;i++){
         if(tiles[i]!=i+1){
             return false;
@@ -200,56 +206,56 @@ bool Solver::solved(Node& node){
     return true;
 }
 
-void Solver::possibleMoves(Node& node,bool possible[4]){
-    if(node.getEmptyRow()==0){
+void Solver::possibleMoves(Node* node,bool possible[4]){
+    if(node->getEmptyRow()==0){
         possible[0]=false;
     }
-    if(node.getEmptyRow()==3){
+    if(node->getEmptyRow()==3){
         possible[1]=false;
     }
-    if(node.getEmptyCol()==0){
+    if(node->getEmptyCol()==0){
         possible[2]=false;
     }
-    if(node.getEmptyCol()==3){
+    if(node->getEmptyCol()==3){
         possible[3]=false;
     }
 }
 
-Node Solver::swapBlank(Node& node,byte direction){
+Node* Solver::swapBlank(Node* node,byte direction){
     byte tiles[16];
-    node.copyTiles(tiles);
+    node->copyTiles(tiles);
     byte temp;
     switch(direction){
         case 0:
-            temp=tiles[4*(node.getEmptyRow()-1)+node.getEmptyCol()];
-            tiles[4*(node.getEmptyRow()-1)+node.getEmptyCol()]=0;
-            tiles[4*node.getEmptyRow()+node.getEmptyCol()]=temp;
+            temp=tiles[4*(node->getEmptyRow()-1)+node->getEmptyCol()];
+            tiles[4*(node->getEmptyRow()-1)+node->getEmptyCol()]=0;
+            tiles[4*node->getEmptyRow()+node->getEmptyCol()]=temp;
             break;
         case 1:
-            temp=tiles[4*(node.getEmptyRow()+1)+node.getEmptyCol()];
-            tiles[4*(node.getEmptyRow()+1)+node.getEmptyCol()]=0;
-            tiles[4*node.getEmptyRow()+node.getEmptyCol()]=temp;
+            temp=tiles[4*(node->getEmptyRow()+1)+node->getEmptyCol()];
+            tiles[4*(node->getEmptyRow()+1)+node->getEmptyCol()]=0;
+            tiles[4*node->getEmptyRow()+node->getEmptyCol()]=temp;
             break;
         case 2:
-            temp=tiles[4*node.getEmptyRow()+(node.getEmptyCol()-1)];
-            tiles[4*node.getEmptyRow()+(node.getEmptyCol()-1)]=0;
-            tiles[4*node.getEmptyRow()+node.getEmptyCol()]=temp;
+            temp=tiles[4*node->getEmptyRow()+(node->getEmptyCol()-1)];
+            tiles[4*node->getEmptyRow()+(node->getEmptyCol()-1)]=0;
+            tiles[4*node->getEmptyRow()+node->getEmptyCol()]=temp;
             break;
         case 3:
-            temp=tiles[4*node.getEmptyRow()+(node.getEmptyCol()+1)];
-            tiles[4*node.getEmptyRow()+(node.getEmptyCol()+1)]=0;
-            tiles[4*node.getEmptyRow()+node.getEmptyCol()]=temp;
+            temp=tiles[4*node->getEmptyRow()+(node->getEmptyCol()+1)];
+            tiles[4*node->getEmptyRow()+(node->getEmptyCol()+1)]=0;
+            tiles[4*node->getEmptyRow()+node->getEmptyCol()]=temp;
             break;
     }
-    return Node(tiles,node.getPathCost()+1,direction);
+    return new Node(tiles,node->getPathCost()+1,direction,node);
 }
 
-byte Solver::getChildren(Node& node,Node children[4]){
+byte Solver::getChildren(Node* node,Node* children[4]){
     byte n=0;
     bool possible[4]={true,true,true,true};
     possibleMoves(node, possible);
     for(byte dir=0;dir<4;dir++){
-        if(possible[dir] && dir!=inverseOfAction(node.getAction())){
+        if(possible[dir] && dir!=inverseOfAction(node->getAction())){
             children[n]=swapBlank(node, dir);
             n++;
         }

@@ -11,6 +11,8 @@
 #import "PuzzleEngine.h"
 #import "CCControlButton.h"
 #import "Tile.h"
+#import "LoadingLayer.h"
+#import "CCBReader.h"
 
 static const int SCRAMBLE_DEPTH=30;
 @interface PuzzleLayer : CCLayer {
@@ -21,7 +23,6 @@ static const int SCRAMBLE_DEPTH=30;
     CCLayer *tileLayer;
     CCLabelTTF *statusLabel;
     PuzzleEngine *puzzle;
-    CCSprite *activityIndicator;
     Tile * selTile; //Stores the currently selected tile in edit mode
     bool inEditMode;
     bool isMoving;
@@ -31,6 +32,7 @@ static const int SCRAMBLE_DEPTH=30;
     CCSprite *arrowRight;
     NSMutableArray *_solution;
     int step;
+    CCScene *loadingScene;
 }
 
 @end

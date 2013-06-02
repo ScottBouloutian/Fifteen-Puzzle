@@ -73,15 +73,17 @@
         [view release];
     }
     else{
-        CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.1 angle:-12.0];
-        [activityIndicator runAction:[CCRepeatForever actionWithAction:rotLeft]];
+        loadingScene=[CCBReader sceneWithNodeGraphFromFile:@"LoadingScene.ccbi"];
+
+        [[CCDirector sharedDirector] pushScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:loadingScene]];
         
-        activityIndicator.visible=YES;
+        //Disable all the buttons
         scrambleButton.enabled=NO;
         solveButton.enabled=NO;
         resetButton.enabled=NO;
         editButton.enabled=NO;
         
+        //Start the algorithm on another thread
         NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(solve) object:nil];
         [queue addOperation:operation];
     }
@@ -96,8 +98,8 @@
     //Allow user to touch arrows to progress through the solution sequence
     _solution=solution;
     step=0;
-    arrowLeft.visible=true;
-    arrowRight.visible=true;
+    arrowLeft.visible=YES;
+    arrowRight.visible=YES;
     statusLabel.string=@"Touch Arrows to View Solution";
     
     //Re-enable the buttons
@@ -106,10 +108,9 @@
     solveButton.enabled=YES;
     scrambleButton.enabled=YES;
 
-    //Stop the loading animation
-    activityIndicator.visible=NO;
-    [activityIndicator stopAllActions];
-    [activityIndicator runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
+    //Notify the loading layer that the computation on this layer has completed
+    LoadingLayer *layer=(LoadingLayer*)loadingScene.children.lastObject;
+    [layer doneLoading];
 }
 
 -(void)resetTouched:(id)sender{
@@ -235,6 +236,7 @@
     for (Tile *tile in tileLayer.children) {
         if (CGRectContainsPoint(tile.boundingBox, touchLocation)) {
             newTile = tile;
+            newTile.zOrder=0;
             break;
         }
     }
@@ -300,6 +302,7 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
+        loadingScene=[CCBReader sceneWithNodeGraphFromFile:@"LoadingScene.ccbi"];
         queue = [NSOperationQueue new];
         puzzle=[[PuzzleEngine alloc]init];
         inEditMode=false;

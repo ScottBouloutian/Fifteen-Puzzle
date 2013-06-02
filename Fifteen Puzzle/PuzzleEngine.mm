@@ -50,7 +50,7 @@
     for(int i=0;i<16;i++){
         tiles[[currentState getTileIndex:i]]=(i+1)%16;
     }
-    Node state(tiles,0,-1);
+    Node *state=new Node(tiles,0,-1,NULL);
     solver.solve(state);
     return [[NSMutableArray alloc]init];
 }
