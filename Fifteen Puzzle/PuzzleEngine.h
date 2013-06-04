@@ -21,4 +21,5 @@
 -(void)swapTiles:(int)tileOneNum:(int)tileTwoNum;
 -(NSMutableArray*)solve;
 -(bool)isSolvableState;
+-(int)getTileAtDirection:(int)direction;
 @end

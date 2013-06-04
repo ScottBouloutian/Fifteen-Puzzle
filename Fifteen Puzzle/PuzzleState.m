@@ -119,6 +119,15 @@
     return -1;
 }
 
+-(int)getTileAtPosition:(int)tileRow:(int)tileCol{
+    for(int i=0;i<16;i++){
+        if(tileRows[i]==tileRow && tileCols[i]==tileCol){
+            return i;
+        }
+    }
+    return -1;
+}
+
 -(BOOL)isEqual:(id)object{
     if ([object isKindOfClass:[PuzzleState class]]) {
         PuzzleState *state=object;
@@ -132,6 +141,28 @@
     else{
         return NO;
     }
+}
+
+-(int)getTileAtDirection:(int)direction{
+    int row=tileRows[15];
+    int col=tileCols[15];
+    switch(direction){
+        case 1:
+            col++;
+            break;
+        case 2:
+            row++;
+            break;
+        case 3:
+            col--;
+            break;
+        case 4:
+            row--;
+            break;
+        default:
+            break;
+    }
+    return [self getTileAtPosition:row :col];
 }
 
 @end

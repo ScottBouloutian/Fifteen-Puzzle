@@ -21,4 +21,6 @@
 -(int)getTileCol:(int)tileNum;
 -(int)getTileIndex:(int)tileNum;
 -(int)getTileAtIndex:(int)index;
+-(int)getTileAtPosition:(int)tileRow:(int)tileCol;
+-(int)getTileAtDirection:(int)direction;
 @end

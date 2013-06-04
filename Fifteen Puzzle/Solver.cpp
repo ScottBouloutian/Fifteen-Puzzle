@@ -68,7 +68,6 @@ string Solver::solve(Node* start){
         result<<(int)solution->getAction();
         solution=solution->getParent();
     }
-    cout<<result.str()<<endl;
     cout<<"SolutionFound";
     return result.str();
 }
@@ -208,7 +207,7 @@ bool Solver::solved(Node* node){
 
 void Solver::possibleMoves(Node* node,bool possible[4]){
     if(node->getEmptyRow()==0){
-        possible[0]=false;
+        possible[3]=false;
     }
     if(node->getEmptyRow()==3){
         possible[1]=false;
@@ -217,7 +216,7 @@ void Solver::possibleMoves(Node* node,bool possible[4]){
         possible[2]=false;
     }
     if(node->getEmptyCol()==3){
-        possible[3]=false;
+        possible[0]=false;
     }
 }
 
@@ -226,7 +225,7 @@ Node* Solver::swapBlank(Node* node,byte direction){
     node->copyTiles(tiles);
     byte temp;
     switch(direction){
-        case 0:
+        case 3:
             temp=tiles[4*(node->getEmptyRow()-1)+node->getEmptyCol()];
             tiles[4*(node->getEmptyRow()-1)+node->getEmptyCol()]=0;
             tiles[4*node->getEmptyRow()+node->getEmptyCol()]=temp;
@@ -241,7 +240,7 @@ Node* Solver::swapBlank(Node* node,byte direction){
             tiles[4*node->getEmptyRow()+(node->getEmptyCol()-1)]=0;
             tiles[4*node->getEmptyRow()+node->getEmptyCol()]=temp;
             break;
-        case 3:
+        case 0:
             temp=tiles[4*node->getEmptyRow()+(node->getEmptyCol()+1)];
             tiles[4*node->getEmptyRow()+(node->getEmptyCol()+1)]=0;
             tiles[4*node->getEmptyRow()+node->getEmptyCol()]=temp;
@@ -264,18 +263,7 @@ byte Solver::getChildren(Node* node,Node* children[4]){
 }
 
 byte Solver::inverseOfAction(byte direction){
-    switch(direction){
-        case 0:
-            return 1;
-        case 1:
-            return 0;
-        case 2:
-            return 3;
-        case 3:
-            return 2;
-        default:
-            return -1;
-    }
+    return (direction+2)%4;
 }
 
 Solver::~Solver(){

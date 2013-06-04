@@ -73,9 +73,11 @@
         [view release];
     }
     else{
-        loadingScene=[CCBReader sceneWithNodeGraphFromFile:@"LoadingScene.ccbi"];
-
-        [[CCDirector sharedDirector] pushScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:loadingScene]];
+        //Display the loading screen
+        [loadingLayer runAction:[CCFadeIn actionWithDuration:0.5f]];
+        [loadingAnimation start];
+        loadingLayer.visible=YES;
+        doneButton.visible=NO;
         
         //Disable all the buttons
         scrambleButton.enabled=NO;
@@ -95,22 +97,14 @@
 }
 
 -(void) updateUI:(NSMutableArray*)solution{
-    //Allow user to touch arrows to progress through the solution sequence
+    //Set the solution and step counter
     _solution=solution;
     step=0;
-    arrowLeft.visible=YES;
-    arrowRight.visible=YES;
-    statusLabel.string=@"Touch Arrows to View Solution";
-    
-    //Re-enable the buttons
-    editButton.enabled=YES;
-    resetButton.enabled=YES;
-    solveButton.enabled=YES;
-    scrambleButton.enabled=YES;
 
-    //Notify the loading layer that the computation on this layer has completed
-    LoadingLayer *layer=(LoadingLayer*)loadingScene.children.lastObject;
-    [layer doneLoading];
+    //Show view solution button and stop the loading animation
+    doneButton.visible=YES;
+    [loadingAnimation stop];
+
 }
 
 -(void)resetTouched:(id)sender{
@@ -191,14 +185,14 @@
     if(arrowLeft.visible && CGRectContainsPoint([arrowLeft boundingBox], touchLocation)){
         if(step>0){
             step--;
-            NSNumber *tileNum=[_solution objectAtIndex:step];
-            [self swapTiles:[self getTile:tileNum.intValue] :[self getTile:16]];
+            int tileNum=[puzzle getTileAtDirection:([[_solution objectAtIndex:step] intValue]+2)%4+1]+1;
+            [self swapTiles:[self getTile:tileNum] :[self getTile:16]];
         }
     }
     else if(arrowRight.visible && CGRectContainsPoint([arrowRight boundingBox], touchLocation)){
         if(step<_solution.count){
-            NSNumber *tileNum=[_solution objectAtIndex:step];
-            [self swapTiles:[self getTile:tileNum.intValue] :[self getTile:16]];
+            int tileNum=[puzzle getTileAtDirection:[[_solution objectAtIndex:step] intValue]+1]+1;
+            [self swapTiles:[self getTile:tileNum] :[self getTile:16]];
             step++;
         }
     }
@@ -269,6 +263,7 @@
 }
 
 -(void)moveTile:(Tile*)tile toLocation:(int)location{
+    tile.zOrder=0;
     isMoving=true;
     id doneAction = [CCCallFuncN actionWithTarget:self selector:@selector(doneMoving)];
     CCMoveTo *tileMove=[CCMoveTo actionWithDuration:0.25 position:positions[location-1]];
@@ -299,10 +294,27 @@
     }
 }
 
+-(void)doneTouched:(id)sender{
+    //Close the loading layer
+    [loadingLayer runAction:[CCFadeOut actionWithDuration:0.5f]];
+    loadingLayer.visible=NO;
+
+    //Allow user to touch arrows to progress through the solution sequence
+    arrowLeft.visible=YES;
+    arrowRight.visible=YES;
+    statusLabel.string=@"Touch Arrows to View Solution";
+    
+    //Re-enable the buttons
+    editButton.enabled=YES;
+    resetButton.enabled=YES;
+    solveButton.enabled=YES;
+    scrambleButton.enabled=YES;
+
+}
+
 -(id) init
 {
 	if( (self=[super init]) ) {
-        loadingScene=[CCBReader sceneWithNodeGraphFromFile:@"LoadingScene.ccbi"];
         queue = [NSOperationQueue new];
         puzzle=[[PuzzleEngine alloc]init];
         inEditMode=false;

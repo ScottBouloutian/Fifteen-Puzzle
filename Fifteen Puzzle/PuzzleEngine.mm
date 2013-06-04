@@ -51,8 +51,12 @@
         tiles[[currentState getTileIndex:i]]=(i+1)%16;
     }
     Node *state=new Node(tiles,0,-1,NULL);
-    solver.solve(state);
-    return [[NSMutableArray alloc]init];
+    std::string solution=solver.solve(state);
+    NSMutableArray *result=[[NSMutableArray alloc]init];
+    for(int i=solution.length()-1;i>=0;i--){
+        [result addObject:[NSNumber numberWithInt:solution[i]-48]];
+    }
+    return result;
 }
 
 -(bool)isSolved{
@@ -75,6 +79,10 @@
     else{
         return NO;
     }
+}
+
+-(int)getTileAtDirection:(int)direction{
+    return [currentState getTileAtDirection:direction];
 }
 
 @end

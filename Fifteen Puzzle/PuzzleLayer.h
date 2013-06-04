@@ -11,8 +11,8 @@
 #import "PuzzleEngine.h"
 #import "CCControlButton.h"
 #import "Tile.h"
-#import "LoadingLayer.h"
 #import "CCBReader.h"
+#import "LoadingAnimation.h"
 
 static const int SCRAMBLE_DEPTH=30;
 @interface PuzzleLayer : CCLayer {
@@ -32,7 +32,9 @@ static const int SCRAMBLE_DEPTH=30;
     CCSprite *arrowRight;
     NSMutableArray *_solution;
     int step;
-    CCScene *loadingScene;
+    CCLayerColor *loadingLayer;
+    CCControlButton *doneButton;
+    LoadingAnimation *loadingAnimation;
 }
 
 @end
