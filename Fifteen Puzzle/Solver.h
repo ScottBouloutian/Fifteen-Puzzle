@@ -12,12 +12,24 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <ctime>
 
 typedef unsigned char byte;
 
 const int FILE_SIZE=524160;
 const byte FACTORIAL[4]={1,2,6,24};
-const int LOOKUP[120]={0,1,2,4,3,5,6,7,12,18,13,19,8,10,14,20,16,22,9,11,15,21,17,23,24,25,26,28,27,29,48,49,72,96,73,97,50,52,74,98,76,100,51,53,75,99,77,101,30,31,36,42,37,43,54,55,78,102,79,103,60,66,84,108,90,114,61,67,85,109,91,115,32,34,38,44,40,46,56,58,80,104,82,106,62,68,86,110,92,116,64,70,88,112,94,118,33,35,39,45,41,47,57,59,81,105,83,107,63,69,87,111,93,117,65,71,89,113,95,119};
+const byte LOOKUP[120]={0,1,2,4,3,5,6,7,12,18,13,19,8,10,14,20,16,22,9,11,15,21,17,23,24,25,26,28,27,29,48,49,72,96,73,97,50,52,74,98,76,100,51,53,75,99,77,101,30,31,36,42,37,43,54,55,78,102,79,103,60,66,84,108,90,114,61,67,85,109,91,115,32,34,38,44,40,46,56,58,80,104,82,106,62,68,86,110,92,116,64,70,88,112,94,118,33,35,39,45,41,47,57,59,81,105,83,107,63,69,87,111,93,117,65,71,89,113,95,119};
+
+struct Solution{
+    std::string moves;
+    bool solved;
+    int time;
+    Solution(std::string _moves,bool _solved,int _time){
+        moves=_moves;
+        solved=_solved;
+        time=_time;
+    }
+};
 
 struct Node{
 private:
@@ -29,11 +41,7 @@ private:
     Node *parent;
 public:
     Node(){
-    }
-    ~Node(){
-        if (parent!=NULL){
-            delete parent;
-        }
+        parent=NULL;
     }
     Node(byte _tiles[16],byte _pathCost,byte _action,Node *_parent){
         for(byte i=0;i<16;i++){
@@ -82,10 +90,14 @@ public:
         std::cout<<"Action Taken: "<<(int)action<<std::endl;
         std::cout<<"-----------------------"<<std::endl;
     }
+
 };
 
 class Solver{
 private:
+    time_t startTime;
+    time_t endTime;
+    int timeLimit;
     int exploredNodes;
     char* data1;
     char* data2;
@@ -106,7 +118,7 @@ private:
 public:
     Solver(std::string&);
     ~Solver();
-    std::string solve(Node*);
+    Solution solve(Node*,int);
 };
 
 #endif /* defined(___5_Solver__Solver__) */

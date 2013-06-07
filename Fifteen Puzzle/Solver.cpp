@@ -33,7 +33,7 @@ void Solver::loadDatabase(string& path){
         is3.read (data3,FILE_SIZE);
         is3.close();
     }else{
-        cout<<"Error loading database"<<endl;
+        //cout<<"Error loading database"<<endl;
     }
 }
 
@@ -55,21 +55,27 @@ int Solver::choose(int n,int r){
     return choose(n-1,r-1)+choose(n-1,r);
 }
 
-string Solver::solve(Node* start){
+Solution Solver::solve(Node* start,int timeLimit){
+    this->timeLimit=timeLimit;
+    time(&startTime);
     byte nextCostBound=heuristic(start);
     Node* solution=NULL;
     exploredNodes=0;
     while(solution==NULL){
+        string path="";
         solution=depthFirstSearch(start, nextCostBound);
         nextCostBound+=2;
     }
-    ostringstream result;
+    bool isSolved=solved(solution);
+    ostringstream ss;
     while(solution->getParent()!=NULL){
-        result<<(int)solution->getAction();
+        ss<<solution->getAction();
         solution=solution->getParent();
     }
-    cout<<"SolutionFound";
-    return result.str();
+    time(&endTime);
+    Solution result(ss.str(),isSolved,difftime(endTime, startTime));
+    //cout<<"Solution Found"<<endl;
+    return result;
 }
 
 byte Solver::heuristic(Node* node){
@@ -178,8 +184,12 @@ Node* Solver::depthFirstSearch(Node* current,byte currentCostBound){
         return current;
     }
     exploredNodes++;
-    if(exploredNodes%50000==0){
-        cout<<"explored nodes for this threshold "<<(int)currentCostBound<<" "<<exploredNodes<<endl;
+    if(exploredNodes%100000==0){
+        //cout<<"explored nodes for this threshold "<<(int)currentCostBound<<" "<<exploredNodes<<endl;
+        time(&endTime);
+        if(difftime(endTime, startTime)>timeLimit){
+            return current;
+        }
     }
     Node* children[4];
     byte n=getChildren(current, children);

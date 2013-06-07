@@ -21,43 +21,6 @@
     }
 }
 
-//-(void)moveTilesSequentialy:(NSMutableArray*)tiles{
-//    isMoving=true;
-//    tileSequence=tiles;
-//    count=0;
-//    
-//    [self doneMovingSequentialy];
-//}
-//
-//-(void)doneMovingSequentialy{
-//    if(count>=tileSequence.count){
-//        isMoving=false;
-//        return;
-//    }
-//    else{
-//        NSNumber *tileNumber=[tileSequence objectAtIndex:count];
-//        count++;
-//        Tile* tile=[self getTile:tileNumber.intValue];
-//        Tile* blank=[self getTile:9];
-//        
-//        //Swap the locations of the tiles
-//        [puzzle swapTiles:tileNumber.intValue :9];
-//        int tmpLoc=blank.location;
-//        blank.location=tile.location;
-//        tile.location=tmpLoc;
-//
-//        //Move the blank space to its new position
-//        blank.position=positions[blank.location-1];
-//        
-//        //Move the tile to the blank space's position
-//        CCMoveTo *tileMove=[CCMoveTo actionWithDuration:0.25 position:positions[tile.location-1]];
-//        id doneAction = [CCCallFuncN actionWithTarget:self selector:@selector(doneMovingSequentialy)];
-//        CCSequence *moveSeq=[CCSequence actions:tileMove,doneAction, nil];
-//        [tile runAction:moveSeq];
-//        
-//    }
-//}
-
 -(void)solveTouched:(id)sender{
     
     //Make the arrows invisible
@@ -70,15 +33,15 @@
     else if(![puzzle isSolvableState]){
         UIAlertView *view=[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Puzzle cannot be solved" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
         [view show];
-        [view release];
     }
     else{
         //Display the loading screen
         [loadingLayer runAction:[CCFadeIn actionWithDuration:0.5f]];
         [loadingAnimation start];
         loadingLayer.visible=YES;
+        instructionsLabel.visible=NO;
         doneButton.visible=NO;
-        
+
         //Disable all the buttons
         scrambleButton.enabled=NO;
         solveButton.enabled=NO;
@@ -97,14 +60,28 @@
 }
 
 -(void) updateUI:(NSMutableArray*)solution{
+    //Check if a solution was succesfully found
+    NSNumber *solved=(NSNumber*)solution.lastObject;
+    [solution removeLastObject];
+    if(solved.boolValue){
+        NSNumber *time=solution.lastObject;
+        [solution removeLastObject];
+        instructionsLabel.string=[NSString stringWithFormat:@"Optimal Solution\n%i moves\n%i seconds",solution.count,time.intValue];
+    }else{
+        instructionsLabel.string=@"A solution to the puzzle was not able to be found within 30 seconds. Try moving around some tiles and trying again!";
+        UIAlertView *view=[[UIAlertView alloc] initWithTitle:@"Timeout" message:@"Puzzle was not solved" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+        [view show];
+
+    }
+    
     //Set the solution and step counter
     _solution=solution;
     step=0;
 
-    //Show view solution button and stop the loading animation
+    //Show view solution button, stop the loading animation, and show the instructions label
     doneButton.visible=YES;
     [loadingAnimation stop];
-
+    instructionsLabel.visible=YES;
 }
 
 -(void)resetTouched:(id)sender{
@@ -121,12 +98,7 @@
 }
 
 -(Tile*)getTile:(int)tileNumber{
-    for(Tile *tile in tileLayer.children){
-        if(tile.number==tileNumber){
-            return tile;
-        }
-    }
-    return nil;
+    return (Tile*)[tileLayer getChildByTag:tileNumber];
 }
 
 -(void)rearrangeTouched:(id)sender{
@@ -142,10 +114,18 @@
         solveButton.enabled=YES;
         resetButton.enabled=YES;
         [editButton setTitle:@"Rearrange" forState:CCControlStateNormal];
+        [editButton setBackgroundSprite:[CCScale9Sprite spriteWithFile:@"greyButton.png"] forState:CCControlStateNormal];
+        [editButton setBackgroundSprite:[CCScale9Sprite spriteWithFile:@"greyButtonHighlight.png"] forState:CCControlStateHighlighted];
+        [editButton setTitleColor:ccBLACK forState:CCControlStateNormal];
+        [editButton setTitleColor:ccBLACK forState:CCControlStateHighlighted];
         inEditMode=false;
     }else{
         selTile=nil;
         [editButton setTitle:@"Done" forState:CCControlStateNormal];
+        [editButton setBackgroundSprite:[CCScale9Sprite spriteWithFile:@"blueButton.png"] forState:CCControlStateNormal];
+        [editButton setBackgroundSprite:[CCScale9Sprite spriteWithFile:@"blueButtonHighlight.png"] forState:CCControlStateHighlighted];
+        [editButton setTitleColor:ccWHITE forState:CCControlStateNormal];
+        [editButton setTitleColor:ccWHITE forState:CCControlStateHighlighted];
         resetButton.enabled=NO;
         solveButton.enabled=NO;
         scrambleButton.enabled=NO;
@@ -221,7 +201,6 @@
             }
         }
     }
-    
     return true;
 }
 
@@ -250,15 +229,18 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
     if(inEditMode & !isMoving){
+        //Convert touch location to proper node space
         CGPoint touchLocation = [tileLayer convertTouchToNodeSpace:touch];
-        
         CGPoint oldTouchLocation = [touch previousLocationInView:touch.view];
         oldTouchLocation = [[CCDirector sharedDirector] convertToGL:oldTouchLocation];
         oldTouchLocation = [tileLayer convertToNodeSpace:oldTouchLocation];
         
-        CGPoint translation = ccpSub(touchLocation, oldTouchLocation);
-        CGPoint newPos = ccpAdd(selTile.position, translation);
-        selTile.position = newPos;
+        //If the beggining of the tile drag starts on top of the currently selected tile...
+        if(CGRectContainsPoint(selTile.boundingBox, oldTouchLocation)){
+            CGPoint translation = ccpSub(touchLocation, oldTouchLocation);
+            CGPoint newPos = ccpAdd(selTile.position, translation);
+            selTile.position = newPos;
+        }
     }
 }
 
@@ -326,7 +308,6 @@
                 positions[i*4+j]=ccp(37.5+75*j,300-37.5-75*i);
             }
         }
-        NSLog(@"%f,%f",positions[10].x,positions[10].y);
     }
 	return self;
 }

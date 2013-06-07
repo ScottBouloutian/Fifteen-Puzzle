@@ -35,6 +35,7 @@ static const int SCRAMBLE_DEPTH=30;
     CCLayerColor *loadingLayer;
     CCControlButton *doneButton;
     LoadingAnimation *loadingAnimation;
+    CCLabelTTF *instructionsLabel;
 }
 
 @end
