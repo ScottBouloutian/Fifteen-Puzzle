@@ -41,6 +41,7 @@
         loadingLayer.visible=YES;
         instructionsLabel.visible=NO;
         doneButton.visible=NO;
+        socialMedia.visible=NO;
 
         //Disable all the buttons
         scrambleButton.enabled=NO;
@@ -68,7 +69,7 @@
         [solution removeLastObject];
         instructionsLabel.string=[NSString stringWithFormat:@"Optimal Solution\n%i moves\n%i seconds",solution.count,time.intValue];
     }else{
-        instructionsLabel.string=@"A solution to the puzzle was not able to be found within 30 seconds. Try moving around some tiles and trying again!";
+        instructionsLabel.string=@"A solution to the puzzle was not able to be found within 30 seconds.";
         UIAlertView *view=[[UIAlertView alloc] initWithTitle:@"Timeout" message:@"Puzzle was not solved" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
         [view show];
 
@@ -80,6 +81,7 @@
 
     //Show view solution button, stop the loading animation, and show the instructions label
     doneButton.visible=YES;
+    socialMedia.visible=YES;
     [loadingAnimation stop];
     instructionsLabel.visible=YES;
 }
@@ -294,6 +296,56 @@
 
 }
 
+-(void)facebookTouched:(id)sender{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *fbComposer = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [fbComposer setInitialText:@"Check out Fifteen Puzzle Solver in the App Store!"];
+        [[CCDirector sharedDirector] presentViewController:fbComposer animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Facebook Error"
+                                  message:@"You may not have set up facebook service on your device or\nYou may not connected to internent.\nPlease check ..."
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil];
+        [alertView show];
+    }
+}
+
+-(void)twitterTouched:(id)sender{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *twComposer = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [twComposer setInitialText:@"Check out Fifteen Puzzle Solver in the App Store!"];
+        [[CCDirector sharedDirector] presentViewController:twComposer animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Twitter Error"
+                                  message:@"You may not have set up twitter service on your device or\nYou may not connected to internent.\nPlease check ..."
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles: nil];
+        [alertView show];
+    }
+}
+
+-(void)messagesTouched:(id)sender{
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+	if([MFMessageComposeViewController canSendText])
+	{
+		controller.body = @"Check out Fifteen Puzzle Solver in the App Store!";
+        controller.messageComposeDelegate=self;
+		[[CCDirector sharedDirector] presentModalViewController:controller animated:YES];
+	}
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+}
+
 -(id) init
 {
 	if( (self=[super init]) ) {
@@ -301,8 +353,7 @@
         puzzle=[[PuzzleEngine alloc]init];
         inEditMode=false;
         isMoving=false;
-        CCDirector *director=[CCDirector sharedDirector];
-        [[director touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
         for (int i=0;i<4;i++){
             for(int j=0;j<4;j++){
                 positions[i*4+j]=ccp(37.5+75*j,300-37.5-75*i);

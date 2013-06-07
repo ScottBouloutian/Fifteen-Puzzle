@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Social/Social.h>
+#import <MessageUI/MessageUI.h>
 #import "cocos2d.h"
 #import "PuzzleEngine.h"
 #import "CCControlButton.h"
@@ -15,7 +17,7 @@
 #import "LoadingAnimation.h"
 
 static const int SCRAMBLE_DEPTH=30;
-@interface PuzzleLayer : CCLayer {
+@interface PuzzleLayer : CCLayer<MFMessageComposeViewControllerDelegate>{
     CCControlButton *editButton;
     CCControlButton *scrambleButton;
     CCControlButton *solveButton;
@@ -36,6 +38,7 @@ static const int SCRAMBLE_DEPTH=30;
     CCControlButton *doneButton;
     LoadingAnimation *loadingAnimation;
     CCLabelTTF *instructionsLabel;
+    CCNode *socialMedia;
 }
 
 @end
